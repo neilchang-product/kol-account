@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <title>帳號分析 - 社群頻道分析</title>
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #59A17E; --primary-dark: #3E7058; --secondary: #50C8A4;
+      --bg: #F8F8F8; --paper: #FFFFFF; --border: rgba(0,0,0,0.12);
+      --text-title: #3D3935; --text-content: #555; --text-remark: #9D9D9D; --text-hint: #C0C0C0;
+      --shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size:10px; }
+    body { font-family:'Noto Sans TC','Roboto',sans-serif; font-size:1.4rem; line-height:1.5; color:var(--text-title); background:var(--bg); -webkit-font-smoothing:antialiased; min-height:100vh; }
+
+    .topbar { height:5.2rem; background:var(--paper); display:flex; align-items:center; padding:0 2.4rem; box-shadow:0 1px 3px rgba(0,0,0,0.08); gap:1.2rem; position:sticky; top:0; z-index:10; }
+    .topbar a { text-decoration:none; color:var(--text-remark); display:flex; align-items:center; gap:0.4rem; font-size:1.3rem; font-weight:500; transition:color 0.15s; }
+    .topbar a:hover { color:var(--primary); }
+    .topbar h1 { font-size:1.6rem; font-weight:700; display:flex; align-items:center; gap:0.6rem; }
+
+    .container { max-width:100rem; margin:1.6rem auto; padding:0 2.4rem; }
+
+    /* Profile card */
+    .profile-card { background:var(--paper); border-radius:1.2rem; box-shadow:var(--shadow); padding:1.8rem 2.4rem; margin-bottom:1.6rem; }
+    .profile-avatar { width:6rem; height:6rem; border-radius:50%; background:#DCE5E2; display:flex; align-items:center; justify-content:center; font-size:2.6rem; font-weight:700; color:var(--primary); flex-shrink:0; }
+    .profile-info { flex:1; }
+    .profile-info h2 { font-size:1.8rem; font-weight:700; }
+    .profile-info .pid { font-size:1.3rem; color:var(--text-remark); margin-top:0.2rem; }
+    .profile-info .desc { font-size:1.25rem; color:var(--text-content); margin-top:0.8rem; line-height:1.6; }
+    .profile-info .meta { display:flex; gap:2rem; margin-top:1.2rem; font-size:1.2rem; color:var(--text-remark); }
+    .profile-stats { display:grid; grid-template-columns:repeat(3,auto); gap:0.6rem; flex-shrink:0; align-items:flex-start; }
+    .stat-box { text-align:center; padding:0.5rem 1.2rem; background:var(--bg); border-radius:0.6rem; min-width:7rem; }
+    .stat-box .val { font-size:1.4rem; font-weight:700; color:var(--text-title); font-family:'Roboto',monospace; }
+    .stat-box .label { font-size:0.95rem; color:var(--text-remark); }
+
+    /* Time dimension tabs */
+    .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; }
+    .section-header h3 { font-size:1.5rem; font-weight:700; display:flex; align-items:center; gap:0.6rem; }
+    .section-header h3 .material-icons-outlined { font-size:2rem; color:var(--primary); }
+    .time-tabs { display:flex; gap:0.4rem; }
+    .time-tab { padding:0.5rem 1.2rem; border:1px solid var(--border); border-radius:2rem; font-size:1.15rem; font-family:inherit; cursor:pointer; background:transparent; color:var(--text-remark); font-weight:500; transition:all 0.15s; }
+    .time-tab.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .time-tab:hover:not(.active) { border-color:var(--primary); color:var(--primary); }
+
+    /* Metric cards grid */
+    .metrics-grid { display:grid; grid-template-columns:repeat(6, 1fr); gap:1rem; margin-bottom:1.6rem; }
+    .metric-card { background:var(--paper); border-radius:1rem; box-shadow:var(--shadow); padding:1.6rem; cursor:pointer; transition:box-shadow 0.2s, transform 0.2s; border:1px solid transparent; }
+    .metric-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.1); transform:translateY(-2px); }
+    .metric-card.active { opacity:1; }
+    .metric-card.inactive { opacity:0.4; }
+    .metric-card .mc-label { font-size:1.15rem; color:var(--text-remark); font-weight:500; margin-bottom:0.4rem; display:flex; align-items:center; justify-content:space-between; gap:0.4rem; }
+    .metric-card .mc-value { font-size:2.4rem; font-weight:700; font-family:'Roboto',monospace; color:var(--text-title); }
+    .metric-card .mc-trend { font-size:1.1rem; margin-top:0.6rem; display:flex; align-items:center; gap:0.3rem; }
+    .mc-trend.up { color:#2E7D32; }
+    .mc-trend.down { color:#C62828; }
+    .mc-trend .material-icons-outlined { font-size:1.4rem; }
+
+    /* Heatmap cells */
+    .hm-cell { aspect-ratio:1; border-radius:3px; position:relative; cursor:pointer; transition:transform 0.1s; display:flex; align-items:center; justify-content:center; }
+    .hm-cell:hover { transform:scale(1.3); z-index:1; }
+    .hm-cell .hm-tip { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.8); color:#fff; padding:0.3rem 0.6rem; border-radius:4px; font-size:1rem; white-space:nowrap; pointer-events:none; z-index:10; }
+    .hm-cell:hover .hm-tip { display:block; }
+    .hm-cell .hm-val { display:none; font-size:0.7rem; font-weight:600; color:rgba(0,0,0,0.6); line-height:1; pointer-events:none; }
+    .hm-show-values .hm-val { display:block; }
+    .hm-day { text-align:center; font-size:0.9rem; color:var(--text-hint); margin-top:2px; }
+    .hm-switch.on { background:var(--primary) !important; }
+    .hm-switch.on > span { transform:translateX(1.4rem); }
+
+    /* Time filter pills */
+    .tf-btn { padding:0.3rem 0.8rem; font-size:1.1rem; font-family:inherit; border:none; background:transparent; color:var(--text-remark); cursor:pointer; transition:all 0.15s; white-space:nowrap; border-right:1px solid var(--border); }
+    .tf-btn:last-child { border-right:none; }
+    .tf-btn:hover { background:var(--action-hover); color:var(--text-content); }
+    .tf-btn.active { background:var(--primary); color:#fff; }
+
+    /* Chart placeholder */
+    .chart-area { background:var(--paper); border-radius:1rem; box-shadow:var(--shadow); padding:1.6rem 2rem; margin-bottom:1.6rem; min-height:18rem; display:flex; align-items:center; justify-content:center; color:var(--text-hint); font-size:1.3rem; }
+    .chart-area .material-icons-outlined { font-size:4rem; margin-bottom:0.8rem; }
+
+    /* Posts list */
+    .posts-section { background:var(--paper); border-radius:1.2rem; box-shadow:var(--shadow); overflow:hidden; }
+    .posts-header { padding:1.6rem 2rem; border-bottom:1px solid var(--border); font-size:1.4rem; font-weight:700; display:flex; align-items:center; gap:0.6rem; }
+    .posts-header .material-icons-outlined { color:var(--primary); }
+    .post-item { padding:1.4rem 2rem; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.12s; }
+    .post-item:hover { background:rgba(89,161,126,0.04); }
+    .post-item:last-child { border-bottom:none; }
+    .post-text { font-size:1.3rem; color:var(--text-content); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .post-meta { display:flex; gap:1.6rem; margin-top:0.8rem; font-size:1.1rem; color:var(--text-remark); justify-content:flex-end; }
+    .post-meta span { display:flex; align-items:center; gap:0.3rem; }
+    .post-meta .material-icons-outlined { font-size:1.4rem; }
+    .post-hashtags { margin-top:0.6rem; display:flex; gap:0.4rem; flex-wrap:wrap; }
+    .post-hashtags span { font-size:1.05rem; color:var(--primary); background:rgba(89,161,126,0.08); padding:0.2rem 0.6rem; border-radius:0.4rem; }
+    .pager-btn { min-width:3.2rem; height:3.2rem; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:0.6rem; background:#fff; cursor:pointer; font-family:inherit; font-size:1.2rem; color:var(--text-content); transition:all 0.15s; }
+    .pager-btn:hover:not(.active):not(:disabled) { border-color:var(--primary); color:var(--primary); }
+    .pager-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .pager-btn:disabled { opacity:0.35; cursor:default; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="kol-list.html"><span class="material-icons-outlined" style="font-size:2rem">arrow_back</span> 帳號清單</a>
+  <h1 style="margin-left:1.2rem" id="pageTitle">帳號分析</h1>
+</div>
+
+<div class="container">
+  <!-- Profile (動態載入) -->
+  <div class="profile-card" id="profileCard">
+    <div class="profile-avatar" style="display:flex;align-items:center;justify-content:center;color:var(--text-hint)">載入中...</div>
+  </div>
+
+  <!-- Time dimension -->
+  <div class="section-header">
+    <h3><span class="material-icons-outlined">bar_chart</span> 數據指標（指定時間區間分析 <span id="dateRange" style="font-weight:400;color:var(--text-remark)"></span>）</h3>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:0.4rem;font-size:1.2rem;">
+        <input type="date" id="dateStart" value="2026-03-01" style="padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:0.6rem;font-family:inherit;font-size:1.2rem;">
+        <span style="color:var(--text-hint)">~</span>
+        <input type="date" id="dateEnd" value="2026-04-01" style="padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:0.6rem;font-family:inherit;font-size:1.2rem;">
+      </div>
+      <div class="time-tabs" style="display:flex;align-items:center;">
+        <span style="font-size:1.15rem;color:var(--text-remark);font-weight:500;margin-right:0.4rem;line-height:1">環比</span>
+        <button class="time-tab active" onclick="setTimeUnit('day', this)">日</button>
+        <button class="time-tab" onclick="setTimeUnit('week', this)">週</button>
+        <!-- <button class="time-tab" onclick="setTimeUnit('month', this)">月</button> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric cards (動態載入) -->
+  <div class="metrics-grid" id="metricsGrid"></div>
+
+  <!-- Chart -->
+  <div class="chart-area" id="chartArea" style="flex-direction:column;padding:2rem 2.4rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:1.2rem;">
+      <div style="font-size:1.3rem;font-weight:600;color:var(--text-title);" id="chartTitle">喜歡數 Like - 日趨勢</div>
+      <div style="font-size:1.1rem;color:var(--text-remark);">2026/03/01 ~ 2026/04/01</div>
+    </div>
+    <canvas id="trendChart" style="width:100%;height:18rem;"></canvas>
+  </div>
+
+  <!-- Heatmap -->
+  <div class="heatmap-section" id="heatmapSection" style="background:var(--paper);border-radius:1rem;box-shadow:var(--shadow);padding:1.6rem 2rem;margin-bottom:1.6rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+      <div style="font-size:1.3rem;font-weight:600;color:var(--text-title);">指標熱力圖</div>
+      <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:1rem;color:var(--text-remark);user-select:none;">
+        顯示數值
+        <span class="hm-switch" onclick="toggleHeatmapValues()" id="hmSwitch" style="display:inline-block;width:3.2rem;height:1.8rem;border-radius:1rem;background:#ccc;position:relative;transition:background 0.2s;vertical-align:middle;">
+          <span style="position:absolute;top:2px;left:2px;width:1.4rem;height:1.4rem;border-radius:50%;background:#fff;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
+        </span>
+      </label>
+    </div>
+    <div id="heatmapGrid"></div>
+  </div>
+
+  <!-- Posts list -->
+  <div class="posts-section" id="postsSection">
+    <div class="posts-header" style="flex-direction:column;gap:1rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+        <span style="display:flex;align-items:center;gap:0.6rem">
+          <span class="material-icons-outlined">article</span> 相關貼文列表
+          <span id="postDateRange" style="font-size:1.1rem;color:var(--text-content);font-weight:500;margin-left:0.4rem;"></span>
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:1rem;font-size:1.15rem;color:var(--text-remark);">
+        <div id="timeFilter" style="display:flex;gap:0;border:1px solid var(--border);border-radius:0.6rem;overflow:hidden;"></div>
+        <div style="display:flex;align-items:center;gap:0.8rem;">
+          <span class="material-icons-outlined" style="font-size:1.6rem">sort</span>
+          <select id="postSort" onchange="sortPosts()" style="border:1px solid var(--border);border-radius:0.6rem;padding:0.3rem 0.8rem;font-family:inherit;font-size:1.15rem;color:var(--text-content);background:#fff;cursor:pointer;">
+            <option value="time">時間</option>
+            <option value="like">喜歡數</option>
+            <option value="reply">回覆數</option>
+            <option value="repost">轉發數</option>
+            <option value="quote">引用數</option>
+            <option value="view">瀏覽數</option>
+          </select>
+          <button id="sortDirBtn" onclick="toggleSortDir()" title="切換排序方向" style="display:inline-flex;align-items:center;justify-content:center;width:2.6rem;height:2.6rem;border:1px solid var(--border);border-radius:0.6rem;background:#fff;cursor:pointer;color:var(--text-remark);transition:color 0.15s;">
+            <span class="material-icons-outlined" style="font-size:1.6rem" id="sortDirIcon">arrow_downward</span>
+          </button>
+          <select id="pageSize" onchange="changePageSize()" style="border:1px solid var(--border);border-radius:0.6rem;padding:0.3rem 0.8rem;font-family:inherit;font-size:1.15rem;color:var(--text-content);background:#fff;cursor:pointer;">
+            <option value="20">20 篇/頁</option>
+            <option value="50" selected>50 篇/頁</option>
+            <option value="100">100 篇/頁</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="postsList"></div>
+    <div id="postsPager" style="display:flex;align-items:center;justify-content:center;gap:0.4rem;padding:1.4rem 2rem;border-top:1px solid var(--border);"></div>
+  </div>
+</div>
+
+<script>
+// 從 URL 取得 id 參數，從 data.json 載入帳號資料
+const urlParams = new URLSearchParams(window.location.search);
+const channelId = urlParams.get('id') || '@famitsu';
+
+async function loadProfile() {
+  try {
+    const res = await fetch('./data.json');
+    const data = await res.json();
+    const ch = data.channels.find(c => c.id === channelId);
+    if (!ch) {
+      document.getElementById('profileCard').innerHTML = '<div style="padding:3rem;text-align:center;color:var(--text-remark)">找不到此帳號</div>';
+      return;
+    }
+
+    document.getElementById('pageTitle').textContent = ch.name + ' - 帳號分析';
+
+    const avatarHtml = ch.img
+      ? `<img class="profile-avatar" src="${ch.img}" alt="${ch.name}" style="object-fit:cover;">`
+      : `<div class="profile-avatar" style="display:flex;align-items:center;justify-content:center;font-size:3.2rem;font-weight:700;color:var(--primary)">${ch.name[0]}</div>`;
+
+    const urlHtml = ch.account_url
+      ? `<a href="${ch.account_url}" target="_blank" style="color:var(--text-link,#129D73);text-decoration:none">${ch.id}</a>
+         <a href="${ch.account_url}" target="_blank" title="開啟頻道" style="display:inline-flex;align-items:center;color:var(--text-remark)"><span class="material-icons-outlined" style="font-size:1.6rem">open_in_new</span></a>`
+      : ch.id;
+
+    document.getElementById('profileCard').innerHTML = `
+      <div style="display:flex;gap:2rem;align-items:flex-start;width:100%;">
+        ${avatarHtml}
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;">
+            <div class="profile-info">
+              <h2>${ch.name}</h2>
+              <div class="pid" style="display:flex;align-items:center;gap:0.6rem">
+                ${urlHtml}
+                <span style="color:var(--border);">|</span>
+                <span style="display:flex;align-items:center;gap:0.3rem;font-size:1.2rem;color:var(--text-remark);"><span class="material-icons-outlined" style="font-size:1.4rem">calendar_today</span>創建於 ${ch.created}</span>
+              </div>
+            </div>
+            <div class="profile-stats">
+              <div class="stat-box"><div class="val">${ch.followers}</div><div class="label">Followers</div></div>
+              <div class="stat-box"><div class="val">${ch.following}</div><div class="label">Following</div></div>
+              <div class="stat-box"><div class="val">${ch.posts}</div><div class="label">Posts</div></div>
+            </div>
+          </div>
+          <div class="desc" style="font-size:1.25rem;color:var(--text-content);margin-top:0.8rem;line-height:1.6;">${ch.desc}</div>
+        </div>
+      </div>`;
+
+    // 載入指標資料
+    if (ch.metrics) {
+      CHART_DATA = {};
+      const grid = document.getElementById('metricsGrid');
+      grid.innerHTML = METRIC_KEYS.map(key => {
+        const m = ch.metrics[key];
+        if (!m) return '';
+        CHART_DATA[key] = m.chart;
+        const trendCls = m.up ? 'up' : 'down';
+        const trendIcon = m.up ? 'trending_up' : 'trending_down';
+        return `<div class="metric-card active" data-metric="${key}" onclick="toggleMetric('${key}')">
+          <div class="mc-label">${METRIC_LABELS[key]}</div>
+          <div class="mc-value">${m.value.toLocaleString()}</div>
+          <div class="mc-trend" id="trend-${key}"></div>
+        </div>`;
+      }).join('');
+      initMetricColors();
+      activeMetrics = new Set(METRIC_KEYS);
+      drawChart();
+      drawHeatmap();
+      updateTrends();
+    } else {
+      document.getElementById('metricsGrid').innerHTML = '<div style="padding:2rem;color:var(--text-hint);text-align:center;grid-column:1/-1">此帳號尚無分析資料</div>';
+    }
+    // 載入貼文資料 (1. 主體 + 2. 日級指標，合併為 ALL_POSTS)
+    try {
+      const [postsRes, dailyRes] = await Promise.all([
+        fetch('./data-posts.json'),
+        fetch('./data-posts-daily.json'),
+      ]);
+      const postsData = await postsRes.json();
+      const dailyData = await dailyRes.json();
+      const postsList = postsData[channelId] || [];
+      const dailyMap = dailyData[channelId] || {};
+      // 合併：每篇貼文 attach 日級指標
+      ALL_POSTS = postsList.map(p => ({ ...p, ...(dailyMap[p.pid] || {}) }));
+      currentPosts = [...ALL_POSTS];
+      updatePostDateRange();
+      sortPosts();
+    } catch (e) {
+      console.warn('載入貼文資料失敗:', e);
+      ALL_POSTS = [];
+    }
+
+  } catch (e) {
+    console.error('載入 data.json 失敗:', e);
+    document.getElementById('profileCard').innerHTML = '<div style="padding:3rem;text-align:center;color:var(--text-remark)">載入資料失敗</div>';
+  }
+}
+
+// ── 七種粉色系顏色 ──
+const METRIC_COLORS = {
+  posts:   '#E91E63',
+  reply:   '#2196F3',
+  repost:  '#4CAF50',
+  quote:   '#FF9800',
+  like:    '#F44336',
+  view:    '#9C27B0',
+  bookmark:'#00BCD4'
+};
+
+const METRIC_LABELS = {
+  posts:'貼文數 Posts', reply:'回覆數量 Reply', repost:'轉發次數 Repost',
+  quote:'引用次數 Quote', like:'喜歡數 Like', view:'瀏覽次數 View', bookmark:'收藏 Bookmark'
+};
+
+// 追蹤哪些指標是顯示的
+const METRIC_KEYS = ['posts','reply','repost','quote','like','view'];
+let activeMetrics = new Set(METRIC_KEYS);
+
+let CHART_DATA = {};
+
+function getDayLabels(n) {
+  const labels = [];
+  // 固定為 2026/03/01 ~ 2026/03/31
+  for (let i = 1; i <= n; i++) {
+    labels.push('3/' + i);
+  }
+  return labels;
+}
+
+// 初始化卡片顏色
+function initMetricColors() {
+  document.querySelectorAll('.metric-card').forEach(card => {
+    const color = METRIC_COLORS[card.dataset.metric];
+    card.querySelector('.mc-label').style.color = color;
+  });
+}
+
+function toggleMetric(metric) {
+  if (activeMetrics.has(metric)) {
+    if (activeMetrics.size <= 1) return;
+    activeMetrics.delete(metric);
+  } else {
+    activeMetrics.add(metric);
+  }
+  document.querySelectorAll('.metric-card').forEach(card => {
+    const m = card.dataset.metric;
+    card.classList.toggle('active', activeMetrics.has(m));
+    card.classList.toggle('inactive', !activeMetrics.has(m));
+  });
+  drawChart();
+}
+
+let currentTimeUnit = 'day';
+
+// 根據環比單位，將日級 CHART_DATA 轉換為對應粒度
+function getChartSeriesAndLabels() {
+  if (currentTimeUnit === 'week') {
+    // 4 週 + 剩餘天 → 5 個點
+    const weekRanges = [
+      { label: '3/1~3/7', start: 0, end: 7 },
+      { label: '3/8~3/14', start: 7, end: 14 },
+      { label: '3/15~3/21', start: 14, end: 21 },
+      { label: '3/22~3/28', start: 21, end: 28 },
+      { label: '3/29~3/31', start: 28, end: 31 },
+    ];
+    const labels = weekRanges.map(w => w.label);
+    const series = {};
+    METRIC_KEYS.forEach(metric => {
+      const raw = CHART_DATA[metric];
+      if (!raw) return;
+      series[metric] = weekRanges.map(w => {
+        let sum = 0;
+        for (let i = w.start; i < w.end; i++) sum += (raw[i] || 0);
+        return sum;
+      });
+    });
+    return { labels, series };
+  }
+  // day (default)
+  return { labels: getDayLabels(31), series: CHART_DATA };
+}
+
+function drawChart() {
+  const { labels, series } = getChartSeriesAndLabels();
+  const canvas = document.getElementById('trendChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width, H = rect.height;
+  const padL = 16, padR = 16, padT = 12, padB = 28;
+  const chartW = W - padL - padR, chartH = H - padT - padB;
+  const n = labels.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+  for (let i = 0; i <= 4; i++) {
+    const y = padT + chartH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+  }
+
+  // X labels
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#9D9D9D';
+  ctx.font = '10px Roboto, sans-serif';
+  const step = Math.max(1, Math.ceil(n / 8));
+  labels.forEach((l, i) => {
+    if (i % step === 0 || i === n - 1) {
+      ctx.fillText(l, padL + (i / Math.max(n - 1, 1)) * chartW, H - 4);
+    }
+  });
+
+  // 每個啟用指標各自標準化到 0-1 畫線
+  activeMetrics.forEach(metric => {
+    const data = series[metric];
+    if (!data) return;
+    const color = METRIC_COLORS[metric];
+    const dMax = Math.max(...data) * 1.1;
+    const dMin = Math.min(...data) * 0.9;
+    const range = dMax - dMin || 1;
+
+    // Line
+    ctx.beginPath();
+    data.forEach((v, i) => {
+      const x = padL + (i / Math.max(data.length - 1, 1)) * chartW;
+      const y = padT + chartH * (1 - (v - dMin) / range);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+
+    // Dots
+    data.forEach((v, i) => {
+      const x = padL + (i / Math.max(data.length - 1, 1)) * chartW;
+      const y = padT + chartH * (1 - (v - dMin) / range);
+      ctx.beginPath();
+      ctx.arc(x, y, currentTimeUnit === 'week' ? 4 : 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+  });
+
+  // Title
+  const unitLabel = currentTimeUnit === 'week' ? '週' : '日';
+  document.getElementById('chartTitle').textContent = '指標趨勢（' + unitLabel + '）';
+
+  // 存下 chart 參數供 hover 用
+  canvas._chartParams = { padL, padR, padT, padB, chartW, chartH, labels, series };
+}
+
+let currentMetric = 'like';
+
+function setTimeUnit(unit, el) {
+  currentTimeUnit = unit;
+  document.querySelectorAll('.time-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  drawChart();
+  updateTrends();
+}
+
+function updateTrends() {
+  const { series, labels } = getChartSeriesAndLabels();
+  const n = labels.length;
+  const compareLabel = currentTimeUnit === 'week' ? '與上週比' : '與昨天比';
+
+  METRIC_KEYS.forEach(key => {
+    const el = document.getElementById('trend-' + key);
+    if (!el) return;
+    const data = series[key];
+    if (!data || n < 2) { el.innerHTML = ''; return; }
+
+    const curr = data[n - 1];
+    const prev = data[n - 2];
+    if (prev === 0) {
+      el.innerHTML = `<span style="color:var(--text-hint);">— ${compareLabel}</span>`;
+      return;
+    }
+    const pct = ((curr - prev) / prev * 100).toFixed(1);
+    const up = curr >= prev;
+    const cls = up ? 'up' : 'down';
+    const icon = up ? 'trending_up' : 'trending_down';
+    const sign = up ? '+' : '';
+    el.className = 'mc-trend ' + cls;
+    el.innerHTML = `<span class="material-icons-outlined">${icon}</span>${sign}${pct}%<span style="flex:1;"></span><span style="font-weight:400;color:var(--text-remark);font-size:1rem;">${compareLabel}</span>`;
+  });
+}
+
+// Hover tooltip
+(function initChartHover() {
+  const canvas = document.getElementById('trendChart');
+  const tooltip = document.createElement('div');
+  tooltip.id = 'chartTooltip';
+  tooltip.style.cssText = 'display:none;position:absolute;background:rgba(255,255,255,0.96);border:1px solid var(--border,rgba(0,0,0,0.12));border-radius:0.8rem;padding:1rem 1.2rem;font-size:1.15rem;line-height:1.8;box-shadow:0 4px 16px rgba(0,0,0,0.1);pointer-events:none;z-index:50;min-width:16rem;';
+  canvas.parentElement.style.position = 'relative';
+  canvas.parentElement.appendChild(tooltip);
+
+  canvas.addEventListener('mousemove', function(e) {
+    const p = canvas._chartParams;
+    if (!p) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+
+    // 找到最近的資料索引
+    const n = p.labels.length;
+    const ratio = (mx - p.padL) / p.chartW;
+    const idx = Math.round(ratio * Math.max(n - 1, 1));
+    if (idx < 0 || idx >= n) { tooltip.style.display = 'none'; return; }
+
+    const dateLabel = p.labels[idx] || '';
+    let html = `<div style="font-weight:700;margin-bottom:0.4rem;color:var(--text-title,#3D3935);">${dateLabel}</div>`;
+
+    activeMetrics.forEach(metric => {
+      const data = p.series[metric];
+      if (!data || data[idx] == null) return;
+      const val = data[idx].toLocaleString();
+      const color = METRIC_COLORS[metric];
+      html += `<div style="display:flex;align-items:center;gap:0.6rem;">
+        <span style="width:1rem;height:1rem;border-radius:50%;background:${color};flex-shrink:0;"></span>
+        <span style="color:var(--text-content,#555);flex:1;">${METRIC_LABELS[metric]}</span>
+        <span style="font-weight:600;font-family:Roboto,monospace;color:var(--text-title,#3D3935);">${val}</span>
+      </div>`;
+    });
+
+    tooltip.innerHTML = html;
+    tooltip.style.display = 'block';
+
+    // 定位
+    const tipW = tooltip.offsetWidth;
+    let left = mx + 16;
+    if (left + tipW > rect.width) left = mx - tipW - 16;
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = '1rem';
+
+    // 畫垂直線
+    drawChart();
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    ctx.save();
+    ctx.scale(dpr, dpr);
+    const x = p.padL + (idx / Math.max(p.labels.length - 1, 1)) * p.chartW;
+    ctx.beginPath();
+    ctx.moveTo(x, p.padT);
+    ctx.lineTo(x, p.padT + p.chartH);
+    ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  });
+
+  canvas.addEventListener('mouseleave', function() {
+    tooltip.style.display = 'none';
+    drawChart();
+  });
+
+  // 點擊圖表某天 → 過濾貼文到該日
+  canvas.addEventListener('click', function(e) {
+    const p = canvas._chartParams;
+    if (!p) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const n = p.labels.length;
+    const ratio = (mx - p.padL) / p.chartW;
+    const idx = Math.round(ratio * Math.max(n - 1, 1));
+    if (idx < 0 || idx >= n) return;
+
+    const label = p.labels[idx]; // e.g. "3/15" or "3/1~3/7"
+    if (!label) return;
+
+    // 週模式點擊不過濾（範圍太大）
+    if (currentTimeUnit === 'week') return;
+
+    const day = parseInt(label.split('/')[1]);
+    const dateStr = '2026/03/' + (day < 10 ? '0' + day : day);
+
+    // 過濾貼文到該日
+    currentPosts = ALL_POSTS.filter(post => post.time.startsWith(dateStr));
+
+    // 更新 UI
+    activeTimeFilter = '';
+    document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('postDateRange').textContent = dateStr + '（00:00 - 23:59）';
+    document.getElementById('postSort').value = 'time';
+    sortPosts();
+
+    // 滾動到貼文列表
+    document.getElementById('postsSection').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // 游標樣式
+  canvas.style.cursor = 'pointer';
+})();
+
+// Heatmap - 7 rows
+function hexToRgb(hex) {
+  return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)];
+}
+
+function shortNum(v) {
+  if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return v.toString();
+}
+
+let hmShowValues = false;
+function toggleHeatmapValues() {
+  hmShowValues = !hmShowValues;
+  const sw = document.getElementById('hmSwitch');
+  sw.classList.toggle('on', hmShowValues);
+  document.getElementById('heatmapGrid').classList.toggle('hm-show-values', hmShowValues);
+}
+
+
+function drawHeatmap() {
+  const labels = getDayLabels(31);
+  const grid = document.getElementById('heatmapGrid');
+
+  // 日期 header row
+  let html = '<div style="display:grid;grid-template-columns:12rem repeat(31,1fr);gap:2px;align-items:center;">';
+
+  // Header: 空格 + 日期
+  html += '<div></div>';
+  html += labels.map((l,i) => `<div class="hm-day">${l.split('/')[1]}</div>`).join('');
+
+  // 每個 metric 一行
+  METRIC_KEYS.forEach(metric => {
+    const data = CHART_DATA[metric];
+    if (!data) return;
+    const color = METRIC_COLORS[metric];
+    const [r,g,b] = hexToRgb(color);
+    const maxVal = Math.max(...data);
+    const minVal = Math.min(...data);
+
+    // Label
+    html += `<div style="font-size:1.1rem;font-weight:500;color:${color};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:0.8rem;">${METRIC_LABELS[metric]}</div>`;
+
+    // Cells
+    html += data.map((v, i) => {
+      const intensity = maxVal === minVal ? 0.5 : (v - minVal) / (maxVal - minVal);
+      const alpha = 0.08 + intensity * 0.88;
+      const bg = `rgba(${r},${g},${b},${alpha})`;
+      const day = parseInt(labels[i].split('/')[1]);
+      const dateStr = '2026/03/' + (day < 10 ? '0' + day : day);
+      return `<div class="hm-cell" style="background:${bg}" onclick="window.open('kol-spread.html?id=${encodeURIComponent(channelId)}&date=${dateStr}','_blank')"><div class="hm-tip">${labels[i]}: ${v.toLocaleString()}</div><span class="hm-val">${shortNum(v)}</span></div>`;
+    }).join('');
+  });
+
+  html += '</div>';
+  grid.innerHTML = html;
+}
+
+
+let currentPosts = [];
+let pageSize = 50;
+let currentPage = 1;
+
+function changePageSize() {
+  pageSize = parseInt(document.getElementById('pageSize').value);
+  currentPage = 1;
+  renderPosts(currentPosts);
+}
+
+function renderPosts(posts) {
+  const total = posts.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * pageSize;
+  const pageItems = posts.slice(start, start + pageSize);
+
+  const sortBy = document.getElementById('postSort').value;
+  const hl = (metric) => sortBy === metric ? `font-weight:700;color:${METRIC_COLORS[metric]};` : '';
+
+  document.getElementById('postsList').innerHTML = pageItems.map((p, i) => {
+    const idx = start + i;
+    return `<div class="post-item" onclick="window.open('kol-spread.html?id=${encodeURIComponent(channelId)}&date=${p.time.split(' ')[0]}&pid=${p.pid}','_blank')" style="display:flex;gap:1.2rem;align-items:flex-start;">
+      <span style="font-size:1.4rem;font-weight:700;color:var(--text-hint);min-width:2.4rem;text-align:center;padding-top:0.2rem;">${idx + 1}</span>
+      <div style="flex:1;min-width:0;">
+      <div style="font-size:1.35rem;font-weight:600;color:var(--text-title);margin-bottom:0.3rem;">${p.title || ''}</div>
+      <div class="post-text">${p.text}</div>
+      <div class="post-hashtags">${p.hashtags.map(h => '<span>' + h + '</span>').join('')}</div>
+      <div class="post-meta">
+        <span style="${hl('time')}"><span class="material-icons-outlined">schedule</span> ${p.time}</span>
+        <span style="${hl('reply')}"><span class="material-icons-outlined">reply</span> ${p.reply.toLocaleString()}</span>
+        <span style="${hl('repost')}"><span class="material-icons-outlined">repeat</span> ${p.repost.toLocaleString()}</span>
+        <span style="${hl('quote')}"><span class="material-icons-outlined">format_quote</span> ${p.quote.toLocaleString()}</span>
+        <span style="${hl('like')}"><span class="material-icons-outlined">favorite</span> ${p.like.toLocaleString()}</span>
+        <span style="${hl('view')}"><span class="material-icons-outlined">visibility</span> ${p.view.toLocaleString()}</span>
+      </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Pager
+  const pager = document.getElementById('postsPager');
+  if (totalPages <= 1) {
+    pager.innerHTML = `<span style="font-size:1.1rem;color:var(--text-hint);">共 ${total} 篇</span>`;
+    return;
+  }
+
+  let html = `<button class="pager-btn" onclick="goPage(1)" ${currentPage === 1 ? 'disabled' : ''}><span class="material-icons-outlined" style="font-size:1.4rem">first_page</span></button>`;
+  html += `<button class="pager-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><span class="material-icons-outlined" style="font-size:1.4rem">chevron_left</span></button>`;
+
+  // Page numbers — show max 7, with ellipsis
+  let pages = [];
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
+  } else {
+    pages.push(1);
+    let s = Math.max(2, currentPage - 1);
+    let e = Math.min(totalPages - 1, currentPage + 1);
+    if (currentPage <= 3) { s = 2; e = 5; }
+    if (currentPage >= totalPages - 2) { s = totalPages - 4; e = totalPages - 1; }
+    if (s > 2) pages.push('...');
+    for (let i = s; i <= e; i++) pages.push(i);
+    if (e < totalPages - 1) pages.push('...');
+    pages.push(totalPages);
+  }
+
+  pages.forEach(pg => {
+    if (pg === '...') {
+      html += `<span style="padding:0 0.4rem;color:var(--text-hint);">…</span>`;
+    } else {
+      html += `<button class="pager-btn${pg === currentPage ? ' active' : ''}" onclick="goPage(${pg})">${pg}</button>`;
+    }
+  });
+
+  html += `<button class="pager-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><span class="material-icons-outlined" style="font-size:1.4rem">chevron_right</span></button>`;
+  html += `<button class="pager-btn" onclick="goPage(${totalPages})" ${currentPage === totalPages ? 'disabled' : ''}><span class="material-icons-outlined" style="font-size:1.4rem">last_page</span></button>`;
+  html += `<span style="font-size:1.1rem;color:var(--text-hint);margin-left:0.8rem;">${start + 1}-${Math.min(start + pageSize, total)} / ${total} 篇</span>`;
+
+  pager.innerHTML = html;
+}
+
+function goPage(pg) {
+  currentPage = pg;
+  renderPosts(currentPosts);
+  document.getElementById('postsSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+// 時間區間 filter
+const TIME_FILTERS = ['全區間','近1個月','4週前','3週前','2週前','1週前','本週'];
+let activeTimeFilter = '全區間';
+
+function countPostsInRange(filterName) {
+  const range = FILTER_RANGES[filterName];
+  if (!range || filterName === '全區間') return ALL_POSTS.length;
+  const start = new Date(range.start.replace(/\//g, '-'));
+  const end = new Date(range.end.replace(/\//g, '-') + ' 23:59:59');
+  return ALL_POSTS.filter(p => {
+    const t = new Date(p.time.replace(/\//g, '-'));
+    return t >= start && t <= end;
+  }).length;
+}
+
+function initTimeFilter() {
+  const el = document.getElementById('timeFilter');
+  el.innerHTML = TIME_FILTERS.map(f => {
+    const count = countPostsInRange(f);
+    return `<button class="tf-btn${f === activeTimeFilter ? ' active' : ''}" onclick="setTimeFilter('${f}', this)">${f} (${count})</button>`;
+  }).join('');
+}
+
+// 各 filter 對應的日期區間（基於 2026/03）
+const FILTER_RANGES = {
+  '全區間':  { start: '2026/03/01', end: '2026/03/31', label: '2026/03/01 ~ 2026/03/31（一個月）' },
+  '近1個月': { start: '2026/03/01', end: '2026/03/31', label: '2026/03/01 ~ 2026/03/31（一個月）' },
+  '4週前':   { start: '2026/03/01', end: '2026/03/07', label: '2026/03/01 ~ 2026/03/07（4週前）' },
+  '3週前':   { start: '2026/03/08', end: '2026/03/14', label: '2026/03/08 ~ 2026/03/14（3週前）' },
+  '2週前':   { start: '2026/03/15', end: '2026/03/21', label: '2026/03/15 ~ 2026/03/21（2週前）' },
+  '1週前':   { start: '2026/03/22', end: '2026/03/28', label: '2026/03/22 ~ 2026/03/28（1週前）' },
+  '本週':    { start: '2026/03/29', end: '2026/03/31', label: '2026/03/29 ~ 2026/03/31（本週）' }
+};
+
+function updatePostDateRange() {
+  const range = FILTER_RANGES[activeTimeFilter];
+  document.getElementById('postDateRange').textContent = range ? range.label : '';
+}
+
+function filterPostsByTime() {
+  const range = FILTER_RANGES[activeTimeFilter];
+  if (!range || activeTimeFilter === '全區間') {
+    currentPosts = [...ALL_POSTS];
+  } else {
+    const start = new Date(range.start.replace(/\//g, '-'));
+    const end = new Date(range.end.replace(/\//g, '-') + ' 23:59:59');
+    currentPosts = ALL_POSTS.filter(p => {
+      const t = new Date(p.time.replace(/\//g, '-'));
+      return t >= start && t <= end;
+    });
+  }
+}
+
+function setTimeFilter(filter, btn) {
+  activeTimeFilter = filter;
+  document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterPostsByTime();
+  updatePostDateRange();
+  sortPosts();
+}
+
+let sortDesc = true; // true=降序(大→小), false=升序(小→大)
+
+function toggleSortDir() {
+  sortDesc = !sortDesc;
+  document.getElementById('sortDirIcon').textContent = sortDesc ? 'arrow_downward' : 'arrow_upward';
+  document.getElementById('sortDirBtn').title = sortDesc ? '目前：大→小（點擊切換）' : '目前：小→大（點擊切換）';
+  sortPosts();
+}
+
+function sortPosts() {
+  const sortBy = document.getElementById('postSort').value;
+  const dir = sortDesc ? 1 : -1;
+  if (sortBy === 'time') {
+    currentPosts.sort((a, b) => dir * (new Date(b.time) - new Date(a.time)));
+  } else {
+    currentPosts.sort((a, b) => dir * (b[sortBy] - a[sortBy]));
+  }
+  currentPage = 1;
+  renderPosts(currentPosts);
+}
+
+function showPostsFor(metric) {
+  currentMetric = metric;
+  currentPosts = [...ALL_POSTS];
+  document.getElementById('postSort').value = 'time';
+  sortPosts();
+}
+
+// 日期區間顯示
+function updateDateRange() {
+  const s = document.getElementById('dateStart').value;
+  const e = document.getElementById('dateEnd').value;
+  document.getElementById('dateRange').textContent = s.replace(/-/g,'/') + ' ~ ' + e.replace(/-/g,'/');
+}
+
+document.getElementById('dateStart').addEventListener('change', () => { updateDateRange(); drawChart(currentMetric); });
+document.getElementById('dateEnd').addEventListener('change', () => { updateDateRange(); drawChart(currentMetric); });
+
+// 初始化
+window.addEventListener('load', async () => {
+  await loadProfile();
+  initTimeFilter();
+  updateDateRange();
+  sortPosts();
+});
+window.addEventListener('resize', () => drawChart(currentMetric));
+</script>
+</body>
+</html>

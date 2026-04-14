@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <title>貼文分析 - 社群頻道分析</title>
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #59A17E; --primary-dark: #3E7058; --secondary: #50C8A4;
+      --bg: #F8F8F8; --paper: #FFFFFF; --border: rgba(0,0,0,0.12);
+      --text-title: #3D3935; --text-content: #555; --text-remark: #9D9D9D; --text-hint: #C0C0C0;
+      --shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size:10px; }
+    body { font-family:'Noto Sans TC','Roboto',sans-serif; font-size:1.4rem; line-height:1.5; color:var(--text-title); background:var(--bg); -webkit-font-smoothing:antialiased; min-height:100vh; }
+
+    .topbar { height:5.2rem; background:var(--paper); display:flex; align-items:center; padding:0 2.4rem; box-shadow:0 1px 3px rgba(0,0,0,0.08); gap:1.2rem; position:sticky; top:0; z-index:10; }
+    .topbar a { text-decoration:none; color:var(--text-remark); display:flex; align-items:center; gap:0.4rem; font-size:1.3rem; font-weight:500; transition:color 0.15s; }
+    .topbar a:hover { color:var(--primary); }
+    .breadcrumb { display:flex; align-items:center; gap:0.6rem; font-size:1.3rem; }
+    .breadcrumb .sep { color:var(--text-hint); }
+
+    .container { max-width:100rem; margin:2.4rem auto; padding:0 2.4rem; }
+
+    /* Post card */
+    .post-card { background:var(--paper); border-radius:1.2rem; box-shadow:var(--shadow); padding:2.4rem; margin-bottom:2.4rem; }
+    .post-author { display:flex; align-items:center; gap:1rem; margin-bottom:1.6rem; }
+    .post-author .avatar { width:4rem; height:4rem; border-radius:50%; background:#DCE5E2; display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--primary); font-size:1.6rem; }
+    .post-author .author-info .name { font-weight:600; font-size:1.4rem; }
+    .post-author .author-info .id { font-size:1.2rem; color:var(--text-remark); }
+    .post-content { font-size:1.5rem; line-height:1.8; color:var(--text-title); margin-bottom:1.2rem; }
+    .post-hashtags { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+    .post-hashtags span { font-size:1.2rem; color:var(--primary); background:rgba(89,161,126,0.08); padding:0.3rem 0.8rem; border-radius:0.4rem; }
+    .post-time { font-size:1.2rem; color:var(--text-remark); display:flex; align-items:center; gap:0.4rem; }
+    .post-time .material-icons-outlined { font-size:1.6rem; }
+
+    /* Metrics */
+    .metrics-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(14rem, 1fr)); gap:1.2rem; margin-bottom:2.4rem; }
+    .metric-card { background:var(--paper); border-radius:1rem; box-shadow:var(--shadow); padding:1.4rem; text-align:center; }
+    .metric-card .mc-label { font-size:1.1rem; color:var(--text-remark); font-weight:500; }
+    .metric-card .mc-value { font-size:2.2rem; font-weight:700; font-family:'Roboto',monospace; color:var(--text-title); margin-top:0.2rem; }
+
+    /* Tabs */
+    .tabs { display:flex; gap:0; border-bottom:1px solid var(--border); margin-bottom:0; }
+    .tab { padding:1rem 2rem; font-size:1.3rem; font-weight:600; color:var(--text-remark); cursor:pointer; border-bottom:2px solid transparent; transition:all 0.15s; background:none; border-top:none; border-left:none; border-right:none; font-family:inherit; }
+    .tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+    .tab:hover:not(.active) { color:var(--text-content); }
+    .tab .count { font-size:1.1rem; color:var(--text-hint); margin-left:0.4rem; font-weight:400; }
+
+    /* Thread list */
+    .thread-section { background:var(--paper); border-radius:0 0 1.2rem 1.2rem; box-shadow:var(--shadow); overflow:hidden; margin-bottom:2.4rem; }
+    .thread-item { padding:1.4rem 2rem; border-bottom:1px solid var(--border); }
+    .thread-item:last-child { border-bottom:none; }
+    .thread-item:hover { background:rgba(89,161,126,0.03); }
+    .thread-author { display:flex; align-items:center; gap:0.8rem; margin-bottom:0.6rem; }
+    .thread-author .mini-avatar { width:2.4rem; height:2.4rem; border-radius:50%; background:#E8F5E9; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:700; color:var(--primary); }
+    .thread-author .ta-name { font-size:1.2rem; font-weight:600; }
+    .thread-author .ta-id { font-size:1.1rem; color:var(--text-remark); }
+    .thread-author .ta-time { font-size:1.1rem; color:var(--text-hint); margin-left:auto; }
+    .thread-text { font-size:1.3rem; color:var(--text-content); line-height:1.6; }
+    .thread-metrics { display:flex; gap:1.4rem; margin-top:0.6rem; font-size:1.05rem; color:var(--text-remark); }
+    .thread-metrics span { display:flex; align-items:center; gap:0.2rem; }
+    .thread-metrics .material-icons-outlined { font-size:1.3rem; }
+    .thread-hashtags { display:flex; gap:0.4rem; margin-top:0.4rem; }
+    .thread-hashtags span { font-size:1rem; color:var(--primary); background:rgba(89,161,126,0.06); padding:0.1rem 0.5rem; border-radius:0.3rem; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="breadcrumb">
+    <a href="kol-list.html">帳號清單</a>
+    <span class="sep">/</span>
+    <a href="kol-account.html">ファミ通.com</a>
+    <span class="sep">/</span>
+    <span style="color:var(--text-title);font-weight:600;">貼文分析</span>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Original post -->
+  <div class="post-card">
+    <div class="post-author">
+      <img class="avatar" src="https://pbs.twimg.com/profile_images/1963800212306341888/CeZD_6Pc_400x400.jpg" alt="ファミ通.com" style="object-fit:cover;">
+      <div class="author-info">
+        <div class="name">ファミ通.com</div>
+        <div class="id" style="display:flex;align-items:center;gap:0.4rem">
+          <a href="https://x.com/famitsu" target="_blank" style="color:var(--text-link,#129D73);text-decoration:none">@famitsu</a>
+          <a href="https://x.com/famitsu" target="_blank" title="開啟頻道" style="display:inline-flex;align-items:center;color:var(--text-remark);transition:color 0.15s"><span class="material-icons-outlined" style="font-size:1.4rem">open_in_new</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="post-content">【速報】Nintendo Switch 2 正式發表！2025年発売予定。新作マリオカートも同時公開。据え置き・携帯両対応の次世代ハイブリッド機、性能は Switch の約4倍。</div>
+    <div class="post-hashtags">
+      <span>#NintendoSwitch2</span>
+      <span>#マリオカート</span>
+      <span>#Nintendo</span>
+      <span>#ゲーム速報</span>
+    </div>
+    <div class="post-time"><span class="material-icons-outlined">schedule</span> 2025/03/28 14:30</div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="mc-label">Reply</div><div class="mc-value">342</div></div>
+    <div class="metric-card"><div class="mc-label">Repost</div><div class="mc-value">5,621</div></div>
+    <div class="metric-card"><div class="mc-label">Quote</div><div class="mc-value">891</div></div>
+    <div class="metric-card"><div class="mc-label">Like</div><div class="mc-value">28,900</div></div>
+    <div class="metric-card"><div class="mc-label">View</div><div class="mc-value">1.2M</div></div>
+    <div class="metric-card"><div class="mc-label">Bookmark</div><div class="mc-value">2,340</div></div>
+  </div>
+
+  <!-- Tabs: Reply / Quote / Repost -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('reply', this)">回覆 Reply <span class="count">(342)</span></button>
+    <button class="tab" onclick="switchTab('quote', this)">引用 Quote <span class="count">(891)</span></button>
+    <button class="tab" onclick="switchTab('repost', this)">轉發 Repost <span class="count">(5,621)</span></button>
+  </div>
+
+  <div class="thread-section" id="threadList"></div>
+</div>
+
+<script>
+const MOCK_THREADS = {
+  reply: [
+    { name:'GameFan太郎', id:'@gamefan_taro', time:'03/28 14:35', text:'ついに来た！Switch 2 楽しみすぎる！マリカーの新作も期待！', hashtags:['#NintendoSwitch2'], reply:12, repost:34, like:567 },
+    { name:'ゲーマー花子', id:'@gamer_hanako', time:'03/28 14:42', text:'価格はいくらになるんだろう？Switch の倍くらい？それでも買うけど', hashtags:[], reply:8, repost:15, like:234 },
+    { name:'テックライター', id:'@tech_writer_jp', time:'03/28 15:00', text:'性能4倍ということは、Tegra T239 搭載確定か。DLSS 対応でネイティブ 1080p / アップスケール 4K あたりか', hashtags:['#Switch2スペック'], reply:45, repost:89, like:1230 },
+    { name:'任天堂大好き', id:'@nintendo_lover', time:'03/28 15:15', text:'マリカーの映像すごかった！リアルタイムレイトレーシング対応してるっぽい', hashtags:['#マリオカート'], reply:6, repost:23, like:345 },
+    { name:'インディーゲーム開発者', id:'@indie_dev_jp', time:'03/28 16:00', text:'開発キットの申請始まってるらしい。UE5 対応なら嬉しいな', hashtags:['#gamedev'], reply:3, repost:12, like:89 },
+  ],
+  quote: [
+    { name:'IGN Japan', id:'@IGNJapan', time:'03/28 15:30', text:'【速報まとめ】Nintendo Switch 2 のスペック・発売日・ローンチタイトル情報を総まとめ。ファミ通の独占情報も含めて解説。', hashtags:['#NintendoSwitch2','#IGN'], reply:78, repost:456, like:3400 },
+    { name:'電撃オンライン', id:'@dengeki_online', time:'03/28 16:00', text:'ファミ通さんの速報に追加情報。ローンチタイトルは8本以上。ゼルダ新作も視野に。', hashtags:['#Switch2','#ゼルダ'], reply:34, repost:234, like:1890 },
+    { name:'ゲーム業界アナリスト', id:'@game_analyst', time:'03/28 17:00', text:'Switch 2 の価格帯は $399 前後と予測。PS5 Digital Edition と同等の戦略。', hashtags:['#ゲーム業界'], reply:23, repost:123, like:890 },
+  ],
+  repost: [
+    { name:'Nintendo 公式', id:'@Nintendo', time:'03/28 14:45', text:'', hashtags:[], reply:0, repost:0, like:0 },
+    { name:'4Gamer.net', id:'@4abornet', time:'03/28 15:00', text:'', hashtags:[], reply:0, repost:0, like:0 },
+    { name:'GAME Watch', id:'@game_watch', time:'03/28 15:10', text:'', hashtags:[], reply:0, repost:0, like:0 },
+  ]
+};
+
+function switchTab(type, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderThreads(type);
+}
+
+function renderThreads(type) {
+  const list = document.getElementById('threadList');
+  const items = MOCK_THREADS[type] || [];
+  if (type === 'repost') {
+    list.innerHTML = items.map(t => `
+      <div class="thread-item">
+        <div class="thread-author">
+          <div class="mini-avatar">${t.name[0]}</div>
+          <span class="ta-name">${t.name}</span>
+          <span class="ta-id">${t.id}</span>
+          <span class="ta-time">${t.time}</span>
+        </div>
+        <div class="thread-text" style="color:var(--text-hint);font-style:italic">轉發了此貼文</div>
+      </div>`).join('');
+  } else {
+    list.innerHTML = items.map(t => `
+      <div class="thread-item">
+        <div class="thread-author">
+          <div class="mini-avatar">${t.name[0]}</div>
+          <span class="ta-name">${t.name}</span>
+          <span class="ta-id">${t.id}</span>
+          <span class="ta-time">${t.time}</span>
+        </div>
+        <div class="thread-text">${t.text}</div>
+        ${t.hashtags.length ? `<div class="thread-hashtags">${t.hashtags.map(h => `<span>${h}</span>`).join('')}</div>` : ''}
+        <div class="thread-metrics">
+          <span><span class="material-icons-outlined">reply</span> ${t.reply}</span>
+          <span><span class="material-icons-outlined">repeat</span> ${t.repost}</span>
+          <span><span class="material-icons-outlined">favorite</span> ${t.like.toLocaleString()}</span>
+        </div>
+      </div>`).join('');
+  }
+}
+
+renderThreads('reply');
+</script>
+</body>
+</html>

@@ -1,0 +1,2591 @@
+{
+  "@famitsu": {
+    "f001": {
+      "reply": 5601,
+      "repost": 15077,
+      "quote": 6637,
+      "like": 72942,
+      "view": 437652
+    },
+    "f002": {
+      "reply": 837,
+      "repost": 4493,
+      "quote": 4719,
+      "like": 66956,
+      "view": 468692
+    },
+    "f003": {
+      "reply": 2532,
+      "repost": 6445,
+      "quote": 1133,
+      "like": 40667,
+      "view": 162668
+    },
+    "f004": {
+      "reply": 6117,
+      "repost": 13849,
+      "quote": 6499,
+      "like": 86066,
+      "view": 688528
+    },
+    "f005": {
+      "reply": 222,
+      "repost": 435,
+      "quote": 330,
+      "like": 6794,
+      "view": 20382
+    },
+    "f006": {
+      "reply": 1610,
+      "repost": 9096,
+      "quote": 4431,
+      "like": 59450,
+      "view": 237800
+    },
+    "f007": {
+      "reply": 591,
+      "repost": 5383,
+      "quote": 1346,
+      "like": 26600,
+      "view": 106400
+    },
+    "f008": {
+      "reply": 2554,
+      "repost": 2965,
+      "quote": 1966,
+      "like": 34566,
+      "view": 207396
+    },
+    "f009": {
+      "reply": 1011,
+      "repost": 1899,
+      "quote": 3061,
+      "like": 36289,
+      "view": 217734
+    },
+    "f010": {
+      "reply": 1964,
+      "repost": 2786,
+      "quote": 3891,
+      "like": 40700,
+      "view": 325600
+    },
+    "f011": {
+      "reply": 4378,
+      "repost": 12488,
+      "quote": 3201,
+      "like": 80014,
+      "view": 400070
+    },
+    "f012": {
+      "reply": 3406,
+      "repost": 11217,
+      "quote": 1215,
+      "like": 42599,
+      "view": 170396
+    },
+    "f013": {
+      "reply": 1861,
+      "repost": 6568,
+      "quote": 4023,
+      "like": 52986,
+      "view": 370902
+    },
+    "f014": {
+      "reply": 221,
+      "repost": 305,
+      "quote": 524,
+      "like": 5875,
+      "view": 47000
+    },
+    "f015": {
+      "reply": 586,
+      "repost": 2434,
+      "quote": 869,
+      "like": 9428,
+      "view": 65996
+    },
+    "f016": {
+      "reply": 2193,
+      "repost": 3473,
+      "quote": 1167,
+      "like": 33162,
+      "view": 232134
+    },
+    "f017": {
+      "reply": 2254,
+      "repost": 8670,
+      "quote": 2669,
+      "like": 35850,
+      "view": 286800
+    },
+    "f018": {
+      "reply": 351,
+      "repost": 4329,
+      "quote": 484,
+      "like": 20927,
+      "view": 167416
+    },
+    "f019": {
+      "reply": 3073,
+      "repost": 14166,
+      "quote": 1653,
+      "like": 60779,
+      "view": 182337
+    },
+    "f020": {
+      "reply": 2597,
+      "repost": 3914,
+      "quote": 1274,
+      "like": 41680,
+      "view": 208400
+    },
+    "f021": {
+      "reply": 3475,
+      "repost": 20516,
+      "quote": 6370,
+      "like": 73701,
+      "view": 368505
+    },
+    "f022": {
+      "reply": 2850,
+      "repost": 4540,
+      "quote": 3287,
+      "like": 36681,
+      "view": 220086
+    },
+    "f023": {
+      "reply": 1400,
+      "repost": 1541,
+      "quote": 1761,
+      "like": 18095,
+      "view": 108570
+    },
+    "f024": {
+      "reply": 1961,
+      "repost": 13643,
+      "quote": 1163,
+      "like": 55089,
+      "view": 385623
+    },
+    "f025": {
+      "reply": 3067,
+      "repost": 16000,
+      "quote": 5410,
+      "like": 73329,
+      "view": 219987
+    },
+    "f026": {
+      "reply": 5379,
+      "repost": 22697,
+      "quote": 2282,
+      "like": 79619,
+      "view": 477714
+    },
+    "f027": {
+      "reply": 395,
+      "repost": 9120,
+      "quote": 2184,
+      "like": 33647,
+      "view": 201882
+    },
+    "f028": {
+      "reply": 4590,
+      "repost": 17327,
+      "quote": 4740,
+      "like": 82964,
+      "view": 331856
+    },
+    "f029": {
+      "reply": 1643,
+      "repost": 3619,
+      "quote": 4077,
+      "like": 42608,
+      "view": 340864
+    },
+    "f030": {
+      "reply": 777,
+      "repost": 4662,
+      "quote": 2702,
+      "like": 42893,
+      "view": 257358
+    },
+    "f031": {
+      "reply": 1940,
+      "repost": 15499,
+      "quote": 4084,
+      "like": 53940,
+      "view": 323640
+    },
+    "f032": {
+      "reply": 3772,
+      "repost": 17096,
+      "quote": 6703,
+      "like": 73804,
+      "view": 442824
+    },
+    "f033": {
+      "reply": 6073,
+      "repost": 18115,
+      "quote": 8450,
+      "like": 88841,
+      "view": 266523
+    },
+    "f034": {
+      "reply": 2313,
+      "repost": 4137,
+      "quote": 2204,
+      "like": 39666,
+      "view": 118998
+    },
+    "f035": {
+      "reply": 575,
+      "repost": 7516,
+      "quote": 2157,
+      "like": 33947,
+      "view": 169735
+    },
+    "f036": {
+      "reply": 1246,
+      "repost": 10412,
+      "quote": 8529,
+      "like": 87518,
+      "view": 437590
+    },
+    "f037": {
+      "reply": 3530,
+      "repost": 13172,
+      "quote": 4242,
+      "like": 62600,
+      "view": 187800
+    },
+    "f038": {
+      "reply": 377,
+      "repost": 643,
+      "quote": 174,
+      "like": 5799,
+      "view": 17397
+    },
+    "f039": {
+      "reply": 1139,
+      "repost": 18579,
+      "quote": 2816,
+      "like": 77000,
+      "view": 308000
+    },
+    "f040": {
+      "reply": 1033,
+      "repost": 2720,
+      "quote": 2881,
+      "like": 31305,
+      "view": 125220
+    },
+    "f041": {
+      "reply": 236,
+      "repost": 290,
+      "quote": 102,
+      "like": 3371,
+      "view": 16855
+    },
+    "f042": {
+      "reply": 634,
+      "repost": 9558,
+      "quote": 1095,
+      "like": 35853,
+      "view": 143412
+    },
+    "f043": {
+      "reply": 2558,
+      "repost": 2694,
+      "quote": 2059,
+      "like": 49955,
+      "view": 199820
+    },
+    "f044": {
+      "reply": 774,
+      "repost": 1537,
+      "quote": 492,
+      "like": 19614,
+      "view": 156912
+    },
+    "f045": {
+      "reply": 2836,
+      "repost": 4771,
+      "quote": 3724,
+      "like": 61756,
+      "view": 308780
+    },
+    "f046": {
+      "reply": 5093,
+      "repost": 23179,
+      "quote": 6080,
+      "like": 83623,
+      "view": 250869
+    },
+    "f047": {
+      "reply": 2340,
+      "repost": 2457,
+      "quote": 4248,
+      "like": 42535,
+      "view": 255210
+    },
+    "f048": {
+      "reply": 3228,
+      "repost": 9601,
+      "quote": 5162,
+      "like": 55640,
+      "view": 333840
+    },
+    "f049": {
+      "reply": 411,
+      "repost": 1100,
+      "quote": 380,
+      "like": 12632,
+      "view": 37896
+    },
+    "f050": {
+      "reply": 4324,
+      "repost": 19344,
+      "quote": 4281,
+      "like": 84830,
+      "view": 678640
+    },
+    "f051": {
+      "reply": 2491,
+      "repost": 14340,
+      "quote": 4424,
+      "like": 81301,
+      "view": 569107
+    },
+    "f052": {
+      "reply": 999,
+      "repost": 4359,
+      "quote": 1397,
+      "like": 17996,
+      "view": 143968
+    },
+    "f053": {
+      "reply": 1297,
+      "repost": 3340,
+      "quote": 1469,
+      "like": 31183,
+      "view": 187098
+    },
+    "f054": {
+      "reply": 2442,
+      "repost": 4606,
+      "quote": 3380,
+      "like": 62441,
+      "view": 374646
+    },
+    "f055": {
+      "reply": 2794,
+      "repost": 8071,
+      "quote": 2109,
+      "like": 36408,
+      "view": 182040
+    },
+    "f056": {
+      "reply": 247,
+      "repost": 1108,
+      "quote": 1183,
+      "like": 14957,
+      "view": 44871
+    },
+    "f057": {
+      "reply": 284,
+      "repost": 5798,
+      "quote": 1302,
+      "like": 20054,
+      "view": 140378
+    },
+    "f058": {
+      "reply": 661,
+      "repost": 4114,
+      "quote": 1522,
+      "like": 19021,
+      "view": 114126
+    },
+    "f059": {
+      "reply": 506,
+      "repost": 1343,
+      "quote": 645,
+      "like": 9743,
+      "view": 48715
+    },
+    "f060": {
+      "reply": 1728,
+      "repost": 3275,
+      "quote": 885,
+      "like": 30884,
+      "view": 123536
+    },
+    "f061": {
+      "reply": 1369,
+      "repost": 9082,
+      "quote": 2891,
+      "like": 75910,
+      "view": 379550
+    },
+    "f062": {
+      "reply": 4633,
+      "repost": 15083,
+      "quote": 4092,
+      "like": 59244,
+      "view": 414708
+    },
+    "f063": {
+      "reply": 1032,
+      "repost": 24625,
+      "quote": 7533,
+      "like": 87239,
+      "view": 610673
+    },
+    "f064": {
+      "reply": 861,
+      "repost": 8587,
+      "quote": 1701,
+      "like": 38054,
+      "view": 114162
+    },
+    "f065": {
+      "reply": 495,
+      "repost": 12715,
+      "quote": 3104,
+      "like": 47541,
+      "view": 237705
+    },
+    "f066": {
+      "reply": 1106,
+      "repost": 11566,
+      "quote": 1246,
+      "like": 55531,
+      "view": 166593
+    },
+    "f067": {
+      "reply": 2635,
+      "repost": 11852,
+      "quote": 2363,
+      "like": 72531,
+      "view": 290124
+    },
+    "f068": {
+      "reply": 1434,
+      "repost": 12511,
+      "quote": 2968,
+      "like": 43846,
+      "view": 350768
+    },
+    "f069": {
+      "reply": 207,
+      "repost": 2023,
+      "quote": 731,
+      "like": 9895,
+      "view": 39580
+    },
+    "f070": {
+      "reply": 2178,
+      "repost": 6627,
+      "quote": 2140,
+      "like": 38665,
+      "view": 231990
+    },
+    "f071": {
+      "reply": 2438,
+      "repost": 3044,
+      "quote": 2110,
+      "like": 38804,
+      "view": 155216
+    },
+    "f072": {
+      "reply": 2306,
+      "repost": 6887,
+      "quote": 2943,
+      "like": 40125,
+      "view": 321000
+    },
+    "f073": {
+      "reply": 337,
+      "repost": 1788,
+      "quote": 184,
+      "like": 8952,
+      "view": 35808
+    },
+    "f074": {
+      "reply": 2708,
+      "repost": 10245,
+      "quote": 1834,
+      "like": 42507,
+      "view": 170028
+    },
+    "f075": {
+      "reply": 839,
+      "repost": 2952,
+      "quote": 568,
+      "like": 18726,
+      "view": 56178
+    },
+    "f076": {
+      "reply": 1900,
+      "repost": 13809,
+      "quote": 5347,
+      "like": 72806,
+      "view": 582448
+    },
+    "f077": {
+      "reply": 1867,
+      "repost": 11639,
+      "quote": 2713,
+      "like": 49421,
+      "view": 148263
+    },
+    "f078": {
+      "reply": 4450,
+      "repost": 12268,
+      "quote": 4167,
+      "like": 63260,
+      "view": 189780
+    },
+    "f079": {
+      "reply": 2630,
+      "repost": 13144,
+      "quote": 8455,
+      "like": 86904,
+      "view": 521424
+    },
+    "f080": {
+      "reply": 1077,
+      "repost": 5677,
+      "quote": 1249,
+      "like": 25527,
+      "view": 178689
+    },
+    "f081": {
+      "reply": 1628,
+      "repost": 11880,
+      "quote": 3729,
+      "like": 60240,
+      "view": 180720
+    },
+    "f082": {
+      "reply": 3413,
+      "repost": 5783,
+      "quote": 4517,
+      "like": 54873,
+      "view": 274365
+    },
+    "f083": {
+      "reply": 706,
+      "repost": 2376,
+      "quote": 462,
+      "like": 13011,
+      "view": 91077
+    },
+    "f084": {
+      "reply": 2972,
+      "repost": 12429,
+      "quote": 4157,
+      "like": 48793,
+      "view": 243965
+    },
+    "f085": {
+      "reply": 687,
+      "repost": 3373,
+      "quote": 2316,
+      "like": 33968,
+      "view": 101904
+    },
+    "f086": {
+      "reply": 1991,
+      "repost": 21625,
+      "quote": 5293,
+      "like": 88918,
+      "view": 266754
+    },
+    "f087": {
+      "reply": 3185,
+      "repost": 21608,
+      "quote": 5010,
+      "like": 76889,
+      "view": 538223
+    },
+    "f088": {
+      "reply": 2814,
+      "repost": 25254,
+      "quote": 3907,
+      "like": 86269,
+      "view": 603883
+    },
+    "f089": {
+      "reply": 2596,
+      "repost": 12603,
+      "quote": 5075,
+      "like": 60640,
+      "view": 181920
+    },
+    "f090": {
+      "reply": 2788,
+      "repost": 5519,
+      "quote": 4584,
+      "like": 80518,
+      "view": 241554
+    },
+    "f091": {
+      "reply": 283,
+      "repost": 965,
+      "quote": 567,
+      "like": 7929,
+      "view": 23787
+    },
+    "f092": {
+      "reply": 765,
+      "repost": 2167,
+      "quote": 985,
+      "like": 14835,
+      "view": 103845
+    },
+    "f093": {
+      "reply": 616,
+      "repost": 1615,
+      "quote": 293,
+      "like": 8376,
+      "view": 50256
+    },
+    "f094": {
+      "reply": 3711,
+      "repost": 23819,
+      "quote": 4612,
+      "like": 82299,
+      "view": 493794
+    },
+    "f095": {
+      "reply": 763,
+      "repost": 10156,
+      "quote": 1110,
+      "like": 48015,
+      "view": 384120
+    },
+    "f096": {
+      "reply": 2818,
+      "repost": 12223,
+      "quote": 2965,
+      "like": 60377,
+      "view": 362262
+    },
+    "f097": {
+      "reply": 1547,
+      "repost": 5394,
+      "quote": 2718,
+      "like": 40079,
+      "view": 240474
+    },
+    "f098": {
+      "reply": 2864,
+      "repost": 11347,
+      "quote": 5538,
+      "like": 85691,
+      "view": 685528
+    },
+    "f099": {
+      "reply": 1483,
+      "repost": 14108,
+      "quote": 5213,
+      "like": 53667,
+      "view": 268335
+    },
+    "f100": {
+      "reply": 2733,
+      "repost": 16045,
+      "quote": 2567,
+      "like": 81997,
+      "view": 327988
+    },
+    "f101": {
+      "reply": 3797,
+      "repost": 10972,
+      "quote": 2508,
+      "like": 48851,
+      "view": 244255
+    },
+    "f102": {
+      "reply": 6127,
+      "repost": 10318,
+      "quote": 4060,
+      "like": 80993,
+      "view": 647944
+    },
+    "f103": {
+      "reply": 2620,
+      "repost": 11846,
+      "quote": 3642,
+      "like": 46054,
+      "view": 184216
+    },
+    "f104": {
+      "reply": 3975,
+      "repost": 11220,
+      "quote": 3523,
+      "like": 71995,
+      "view": 215985
+    },
+    "f105": {
+      "reply": 1142,
+      "repost": 5231,
+      "quote": 4841,
+      "like": 50526,
+      "view": 252630
+    },
+    "f106": {
+      "reply": 1725,
+      "repost": 5631,
+      "quote": 1746,
+      "like": 66736,
+      "view": 266944
+    },
+    "f107": {
+      "reply": 1039,
+      "repost": 4206,
+      "quote": 1474,
+      "like": 16256,
+      "view": 113792
+    },
+    "f108": {
+      "reply": 266,
+      "repost": 1919,
+      "quote": 242,
+      "like": 7947,
+      "view": 63576
+    },
+    "f109": {
+      "reply": 1118,
+      "repost": 13504,
+      "quote": 4278,
+      "like": 52377,
+      "view": 209508
+    },
+    "f110": {
+      "reply": 1003,
+      "repost": 3771,
+      "quote": 1830,
+      "like": 24697,
+      "view": 197576
+    },
+    "f111": {
+      "reply": 1800,
+      "repost": 8126,
+      "quote": 2822,
+      "like": 34133,
+      "view": 204798
+    },
+    "f112": {
+      "reply": 900,
+      "repost": 9811,
+      "quote": 2786,
+      "like": 33671,
+      "view": 235697
+    },
+    "f113": {
+      "reply": 1634,
+      "repost": 5475,
+      "quote": 1570,
+      "like": 28430,
+      "view": 142150
+    },
+    "f114": {
+      "reply": 1805,
+      "repost": 6176,
+      "quote": 1316,
+      "like": 39932,
+      "view": 239592
+    },
+    "f115": {
+      "reply": 574,
+      "repost": 3282,
+      "quote": 2079,
+      "like": 29174,
+      "view": 204218
+    },
+    "f116": {
+      "reply": 3894,
+      "repost": 11769,
+      "quote": 3165,
+      "like": 51655,
+      "view": 361585
+    },
+    "f117": {
+      "reply": 306,
+      "repost": 1742,
+      "quote": 1082,
+      "like": 19341,
+      "view": 96705
+    },
+    "f118": {
+      "reply": 4791,
+      "repost": 5125,
+      "quote": 6525,
+      "like": 70286,
+      "view": 281144
+    },
+    "f119": {
+      "reply": 4668,
+      "repost": 9550,
+      "quote": 3213,
+      "like": 62130,
+      "view": 310650
+    },
+    "f120": {
+      "reply": 1926,
+      "repost": 3661,
+      "quote": 1974,
+      "like": 52015,
+      "view": 208060
+    },
+    "f121": {
+      "reply": 3077,
+      "repost": 9513,
+      "quote": 3729,
+      "like": 44770,
+      "view": 134310
+    },
+    "f122": {
+      "reply": 632,
+      "repost": 5415,
+      "quote": 1592,
+      "like": 21035,
+      "view": 63105
+    },
+    "f123": {
+      "reply": 907,
+      "repost": 4319,
+      "quote": 1959,
+      "like": 21191,
+      "view": 169528
+    },
+    "f124": {
+      "reply": 137,
+      "repost": 479,
+      "quote": 522,
+      "like": 5490,
+      "view": 27450
+    },
+    "f125": {
+      "reply": 3281,
+      "repost": 20208,
+      "quote": 3230,
+      "like": 82807,
+      "view": 579649
+    },
+    "f126": {
+      "reply": 506,
+      "repost": 3978,
+      "quote": 1324,
+      "like": 18970,
+      "view": 56910
+    },
+    "f127": {
+      "reply": 770,
+      "repost": 1965,
+      "quote": 706,
+      "like": 11232,
+      "view": 33696
+    },
+    "f128": {
+      "reply": 4313,
+      "repost": 19709,
+      "quote": 3716,
+      "like": 85831,
+      "view": 600817
+    },
+    "f129": {
+      "reply": 111,
+      "repost": 617,
+      "quote": 112,
+      "like": 3205,
+      "view": 22435
+    },
+    "f130": {
+      "reply": 1112,
+      "repost": 951,
+      "quote": 882,
+      "like": 14221,
+      "view": 99547
+    },
+    "f131": {
+      "reply": 3390,
+      "repost": 10258,
+      "quote": 4003,
+      "like": 69496,
+      "view": 486472
+    },
+    "f132": {
+      "reply": 6790,
+      "repost": 9789,
+      "quote": 1838,
+      "like": 86318,
+      "view": 517908
+    },
+    "f133": {
+      "reply": 318,
+      "repost": 2540,
+      "quote": 335,
+      "like": 11855,
+      "view": 59275
+    },
+    "f134": {
+      "reply": 4991,
+      "repost": 6607,
+      "quote": 3819,
+      "like": 79271,
+      "view": 634168
+    },
+    "f135": {
+      "reply": 1054,
+      "repost": 11596,
+      "quote": 2708,
+      "like": 47374,
+      "view": 378992
+    },
+    "f136": {
+      "reply": 1495,
+      "repost": 5501,
+      "quote": 5079,
+      "like": 65722,
+      "view": 525776
+    },
+    "f137": {
+      "reply": 1923,
+      "repost": 3839,
+      "quote": 2264,
+      "like": 62988,
+      "view": 188964
+    },
+    "f138": {
+      "reply": 639,
+      "repost": 1518,
+      "quote": 841,
+      "like": 8492,
+      "view": 42460
+    },
+    "f139": {
+      "reply": 2057,
+      "repost": 17677,
+      "quote": 2617,
+      "like": 74176,
+      "view": 445056
+    },
+    "f140": {
+      "reply": 3515,
+      "repost": 6620,
+      "quote": 1491,
+      "like": 49789,
+      "view": 149367
+    },
+    "f141": {
+      "reply": 3702,
+      "repost": 12083,
+      "quote": 4691,
+      "like": 51237,
+      "view": 307422
+    },
+    "f142": {
+      "reply": 4195,
+      "repost": 9342,
+      "quote": 3210,
+      "like": 53678,
+      "view": 268390
+    },
+    "f143": {
+      "reply": 4695,
+      "repost": 16470,
+      "quote": 1869,
+      "like": 71062,
+      "view": 355310
+    },
+    "f144": {
+      "reply": 3949,
+      "repost": 10680,
+      "quote": 2164,
+      "like": 81964,
+      "view": 327856
+    },
+    "f145": {
+      "reply": 2819,
+      "repost": 17984,
+      "quote": 4847,
+      "like": 89628,
+      "view": 448140
+    },
+    "f146": {
+      "reply": 2526,
+      "repost": 14176,
+      "quote": 5685,
+      "like": 61183,
+      "view": 305915
+    },
+    "f147": {
+      "reply": 2442,
+      "repost": 24659,
+      "quote": 8010,
+      "like": 83589,
+      "view": 501534
+    }
+  },
+  "@kubotajirusi1": {
+    "k001": {
+      "reply": 94,
+      "repost": 370,
+      "quote": 125,
+      "like": 1606,
+      "view": 8030
+    },
+    "k002": {
+      "reply": 68,
+      "repost": 164,
+      "quote": 114,
+      "like": 2223,
+      "view": 8892
+    },
+    "k003": {
+      "reply": 94,
+      "repost": 638,
+      "quote": 246,
+      "like": 4552,
+      "view": 22760
+    },
+    "k004": {
+      "reply": 107,
+      "repost": 182,
+      "quote": 90,
+      "like": 2462,
+      "view": 14772
+    },
+    "k005": {
+      "reply": 413,
+      "repost": 888,
+      "quote": 154,
+      "like": 5278,
+      "view": 21112
+    },
+    "k006": {
+      "reply": 278,
+      "repost": 1773,
+      "quote": 266,
+      "like": 6479,
+      "view": 32395
+    },
+    "k007": {
+      "reply": 197,
+      "repost": 757,
+      "quote": 268,
+      "like": 5308,
+      "view": 31848
+    },
+    "k008": {
+      "reply": 20,
+      "repost": 252,
+      "quote": 64,
+      "like": 1578,
+      "view": 7890
+    },
+    "k009": {
+      "reply": 341,
+      "repost": 606,
+      "quote": 522,
+      "like": 6907,
+      "view": 27628
+    },
+    "k010": {
+      "reply": 47,
+      "repost": 212,
+      "quote": 44,
+      "like": 842,
+      "view": 1684
+    },
+    "k011": {
+      "reply": 161,
+      "repost": 407,
+      "quote": 318,
+      "like": 6246,
+      "view": 37476
+    },
+    "k012": {
+      "reply": 335,
+      "repost": 960,
+      "quote": 410,
+      "like": 4330,
+      "view": 21650
+    },
+    "k013": {
+      "reply": 205,
+      "repost": 330,
+      "quote": 437,
+      "like": 4741,
+      "view": 14223
+    },
+    "k014": {
+      "reply": 266,
+      "repost": 1623,
+      "quote": 495,
+      "like": 5901,
+      "view": 11802
+    },
+    "k015": {
+      "reply": 113,
+      "repost": 1608,
+      "quote": 313,
+      "like": 5600,
+      "view": 33600
+    },
+    "k016": {
+      "reply": 610,
+      "repost": 1972,
+      "quote": 235,
+      "like": 7824,
+      "view": 23472
+    },
+    "k017": {
+      "reply": 278,
+      "repost": 558,
+      "quote": 351,
+      "like": 3518,
+      "view": 7036
+    },
+    "k018": {
+      "reply": 354,
+      "repost": 593,
+      "quote": 481,
+      "like": 5188,
+      "view": 15564
+    },
+    "k019": {
+      "reply": 121,
+      "repost": 1425,
+      "quote": 483,
+      "like": 7538,
+      "view": 15076
+    },
+    "k020": {
+      "reply": 327,
+      "repost": 1973,
+      "quote": 148,
+      "like": 7067,
+      "view": 28268
+    },
+    "k021": {
+      "reply": 295,
+      "repost": 1420,
+      "quote": 167,
+      "like": 5787,
+      "view": 34722
+    },
+    "k022": {
+      "reply": 63,
+      "repost": 249,
+      "quote": 123,
+      "like": 1275,
+      "view": 3825
+    },
+    "k023": {
+      "reply": 42,
+      "repost": 65,
+      "quote": 37,
+      "like": 870,
+      "view": 1740
+    },
+    "k024": {
+      "reply": 317,
+      "repost": 514,
+      "quote": 321,
+      "like": 4437,
+      "view": 17748
+    },
+    "k025": {
+      "reply": 204,
+      "repost": 440,
+      "quote": 247,
+      "like": 4736,
+      "view": 28416
+    },
+    "k026": {
+      "reply": 294,
+      "repost": 769,
+      "quote": 264,
+      "like": 5114,
+      "view": 30684
+    },
+    "k027": {
+      "reply": 422,
+      "repost": 451,
+      "quote": 420,
+      "like": 7250,
+      "view": 29000
+    },
+    "k028": {
+      "reply": 25,
+      "repost": 572,
+      "quote": 99,
+      "like": 2250,
+      "view": 9000
+    },
+    "k029": {
+      "reply": 164,
+      "repost": 518,
+      "quote": 229,
+      "like": 2346,
+      "view": 11730
+    },
+    "k030": {
+      "reply": 59,
+      "repost": 452,
+      "quote": 157,
+      "like": 1917,
+      "view": 5751
+    },
+    "k031": {
+      "reply": 163,
+      "repost": 538,
+      "quote": 72,
+      "like": 2678,
+      "view": 10712
+    },
+    "k032": {
+      "reply": 271,
+      "repost": 556,
+      "quote": 215,
+      "like": 3668,
+      "view": 11004
+    },
+    "k033": {
+      "reply": 288,
+      "repost": 765,
+      "quote": 140,
+      "like": 4281,
+      "view": 17124
+    },
+    "k034": {
+      "reply": 99,
+      "repost": 636,
+      "quote": 160,
+      "like": 2598,
+      "view": 15588
+    },
+    "k035": {
+      "reply": 104,
+      "repost": 1265,
+      "quote": 169,
+      "like": 4708,
+      "view": 9416
+    },
+    "k036": {
+      "reply": 6,
+      "repost": 32,
+      "quote": 25,
+      "like": 522,
+      "view": 1566
+    },
+    "k037": {
+      "reply": 60,
+      "repost": 279,
+      "quote": 87,
+      "like": 1681,
+      "view": 6724
+    },
+    "k038": {
+      "reply": 439,
+      "repost": 840,
+      "quote": 449,
+      "like": 7611,
+      "view": 15222
+    },
+    "k039": {
+      "reply": 286,
+      "repost": 624,
+      "quote": 237,
+      "like": 3704,
+      "view": 11112
+    },
+    "k040": {
+      "reply": 196,
+      "repost": 329,
+      "quote": 248,
+      "like": 2870,
+      "view": 8610
+    },
+    "k041": {
+      "reply": 9,
+      "repost": 49,
+      "quote": 69,
+      "like": 790,
+      "view": 3160
+    },
+    "k042": {
+      "reply": 450,
+      "repost": 1363,
+      "quote": 477,
+      "like": 6438,
+      "view": 19314
+    },
+    "k043": {
+      "reply": 103,
+      "repost": 599,
+      "quote": 219,
+      "like": 2254,
+      "view": 11270
+    },
+    "k044": {
+      "reply": 243,
+      "repost": 468,
+      "quote": 190,
+      "like": 5638,
+      "view": 11276
+    },
+    "k045": {
+      "reply": 169,
+      "repost": 1335,
+      "quote": 630,
+      "like": 6610,
+      "view": 13220
+    },
+    "k046": {
+      "reply": 233,
+      "repost": 848,
+      "quote": 282,
+      "like": 5888,
+      "view": 23552
+    },
+    "k047": {
+      "reply": 90,
+      "repost": 463,
+      "quote": 181,
+      "like": 2114,
+      "view": 6342
+    },
+    "k048": {
+      "reply": 56,
+      "repost": 587,
+      "quote": 241,
+      "like": 3303,
+      "view": 19818
+    },
+    "k049": {
+      "reply": 343,
+      "repost": 1380,
+      "quote": 296,
+      "like": 6958,
+      "view": 27832
+    },
+    "k050": {
+      "reply": 247,
+      "repost": 758,
+      "quote": 238,
+      "like": 5656,
+      "view": 11312
+    },
+    "k051": {
+      "reply": 76,
+      "repost": 617,
+      "quote": 247,
+      "like": 2713,
+      "view": 10852
+    },
+    "k052": {
+      "reply": 51,
+      "repost": 602,
+      "quote": 229,
+      "like": 2497,
+      "view": 7491
+    },
+    "k053": {
+      "reply": 254,
+      "repost": 863,
+      "quote": 207,
+      "like": 6648,
+      "view": 39888
+    },
+    "k054": {
+      "reply": 20,
+      "repost": 29,
+      "quote": 13,
+      "like": 258,
+      "view": 1290
+    },
+    "k055": {
+      "reply": 164,
+      "repost": 964,
+      "quote": 275,
+      "like": 3230,
+      "view": 6460
+    },
+    "k056": {
+      "reply": 166,
+      "repost": 599,
+      "quote": 166,
+      "like": 2861,
+      "view": 8583
+    },
+    "k057": {
+      "reply": 352,
+      "repost": 2026,
+      "quote": 676,
+      "like": 7755,
+      "view": 31020
+    },
+    "k058": {
+      "reply": 163,
+      "repost": 537,
+      "quote": 218,
+      "like": 7230,
+      "view": 43380
+    },
+    "k059": {
+      "reply": 137,
+      "repost": 207,
+      "quote": 161,
+      "like": 2168,
+      "view": 13008
+    },
+    "k060": {
+      "reply": 71,
+      "repost": 296,
+      "quote": 251,
+      "like": 2799,
+      "view": 5598
+    },
+    "k061": {
+      "reply": 125,
+      "repost": 686,
+      "quote": 199,
+      "like": 3494,
+      "view": 13976
+    },
+    "k062": {
+      "reply": 13,
+      "repost": 211,
+      "quote": 67,
+      "like": 1014,
+      "view": 5070
+    },
+    "k063": {
+      "reply": 221,
+      "repost": 506,
+      "quote": 151,
+      "like": 5134,
+      "view": 10268
+    },
+    "k064": {
+      "reply": 264,
+      "repost": 862,
+      "quote": 504,
+      "like": 5626,
+      "view": 28130
+    },
+    "k065": {
+      "reply": 102,
+      "repost": 174,
+      "quote": 127,
+      "like": 1285,
+      "view": 3855
+    },
+    "k066": {
+      "reply": 147,
+      "repost": 1955,
+      "quote": 253,
+      "like": 7364,
+      "view": 36820
+    },
+    "k067": {
+      "reply": 23,
+      "repost": 211,
+      "quote": 32,
+      "like": 712,
+      "view": 3560
+    },
+    "k068": {
+      "reply": 21,
+      "repost": 53,
+      "quote": 42,
+      "like": 525,
+      "view": 1050
+    },
+    "k069": {
+      "reply": 211,
+      "repost": 1149,
+      "quote": 128,
+      "like": 4770,
+      "view": 14310
+    },
+    "k070": {
+      "reply": 276,
+      "repost": 766,
+      "quote": 494,
+      "like": 5083,
+      "view": 25415
+    },
+    "k071": {
+      "reply": 40,
+      "repost": 318,
+      "quote": 159,
+      "like": 3190,
+      "view": 6380
+    },
+    "k072": {
+      "reply": 10,
+      "repost": 30,
+      "quote": 3,
+      "like": 165,
+      "view": 660
+    },
+    "k073": {
+      "reply": 2,
+      "repost": 22,
+      "quote": 3,
+      "like": 83,
+      "view": 249
+    },
+    "k074": {
+      "reply": 40,
+      "repost": 112,
+      "quote": 22,
+      "like": 891,
+      "view": 4455
+    },
+    "k075": {
+      "reply": 32,
+      "repost": 69,
+      "quote": 26,
+      "like": 424,
+      "view": 1696
+    },
+    "k076": {
+      "reply": 175,
+      "repost": 962,
+      "quote": 133,
+      "like": 4343,
+      "view": 17372
+    },
+    "k077": {
+      "reply": 261,
+      "repost": 721,
+      "quote": 712,
+      "like": 7434,
+      "view": 37170
+    },
+    "k078": {
+      "reply": 85,
+      "repost": 803,
+      "quote": 747,
+      "like": 7571,
+      "view": 37855
+    },
+    "k079": {
+      "reply": 91,
+      "repost": 164,
+      "quote": 87,
+      "like": 1780,
+      "view": 3560
+    },
+    "k080": {
+      "reply": 195,
+      "repost": 1130,
+      "quote": 439,
+      "like": 5379,
+      "view": 10758
+    },
+    "k081": {
+      "reply": 265,
+      "repost": 319,
+      "quote": 147,
+      "like": 5154,
+      "view": 10308
+    },
+    "k082": {
+      "reply": 92,
+      "repost": 544,
+      "quote": 383,
+      "like": 6899,
+      "view": 13798
+    },
+    "k083": {
+      "reply": 29,
+      "repost": 239,
+      "quote": 38,
+      "like": 1062,
+      "view": 6372
+    },
+    "k084": {
+      "reply": 176,
+      "repost": 1220,
+      "quote": 413,
+      "like": 5667,
+      "view": 11334
+    },
+    "k085": {
+      "reply": 118,
+      "repost": 190,
+      "quote": 195,
+      "like": 2261,
+      "view": 13566
+    },
+    "k086": {
+      "reply": 54,
+      "repost": 72,
+      "quote": 26,
+      "like": 909,
+      "view": 5454
+    },
+    "k087": {
+      "reply": 21,
+      "repost": 91,
+      "quote": 37,
+      "like": 920,
+      "view": 4600
+    },
+    "k088": {
+      "reply": 151,
+      "repost": 660,
+      "quote": 142,
+      "like": 4335,
+      "view": 13005
+    },
+    "k089": {
+      "reply": 334,
+      "repost": 1008,
+      "quote": 265,
+      "like": 4540,
+      "view": 22700
+    },
+    "k090": {
+      "reply": 21,
+      "repost": 142,
+      "quote": 56,
+      "like": 1971,
+      "view": 3942
+    },
+    "k091": {
+      "reply": 97,
+      "repost": 344,
+      "quote": 289,
+      "like": 4753,
+      "view": 23765
+    },
+    "k092": {
+      "reply": 438,
+      "repost": 1261,
+      "quote": 337,
+      "like": 5977,
+      "view": 11954
+    },
+    "k093": {
+      "reply": 105,
+      "repost": 185,
+      "quote": 84,
+      "like": 2475,
+      "view": 9900
+    },
+    "k094": {
+      "reply": 13,
+      "repost": 81,
+      "quote": 20,
+      "like": 373,
+      "view": 1492
+    },
+    "k095": {
+      "reply": 69,
+      "repost": 272,
+      "quote": 20,
+      "like": 999,
+      "view": 1998
+    },
+    "k096": {
+      "reply": 39,
+      "repost": 323,
+      "quote": 114,
+      "like": 1183,
+      "view": 3549
+    },
+    "k097": {
+      "reply": 81,
+      "repost": 304,
+      "quote": 65,
+      "like": 2247,
+      "view": 4494
+    },
+    "k098": {
+      "reply": 96,
+      "repost": 487,
+      "quote": 293,
+      "like": 3328,
+      "view": 16640
+    },
+    "k099": {
+      "reply": 365,
+      "repost": 1645,
+      "quote": 191,
+      "like": 6602,
+      "view": 33010
+    },
+    "k100": {
+      "reply": 452,
+      "repost": 1502,
+      "quote": 162,
+      "like": 5753,
+      "view": 11506
+    },
+    "k101": {
+      "reply": 329,
+      "repost": 1444,
+      "quote": 413,
+      "like": 7514,
+      "view": 45084
+    },
+    "k102": {
+      "reply": 326,
+      "repost": 1025,
+      "quote": 450,
+      "like": 5057,
+      "view": 25285
+    },
+    "k103": {
+      "reply": 318,
+      "repost": 1248,
+      "quote": 660,
+      "like": 7258,
+      "view": 21774
+    },
+    "k104": {
+      "reply": 52,
+      "repost": 782,
+      "quote": 76,
+      "like": 3660,
+      "view": 7320
+    },
+    "k105": {
+      "reply": 456,
+      "repost": 1390,
+      "quote": 467,
+      "like": 7163,
+      "view": 42978
+    },
+    "k106": {
+      "reply": 365,
+      "repost": 1749,
+      "quote": 547,
+      "like": 7879,
+      "view": 31516
+    },
+    "k107": {
+      "reply": 157,
+      "repost": 776,
+      "quote": 256,
+      "like": 3595,
+      "view": 10785
+    },
+    "k108": {
+      "reply": 91,
+      "repost": 257,
+      "quote": 26,
+      "like": 1267,
+      "view": 7602
+    },
+    "k109": {
+      "reply": 349,
+      "repost": 1289,
+      "quote": 459,
+      "like": 7704,
+      "view": 23112
+    },
+    "k110": {
+      "reply": 87,
+      "repost": 182,
+      "quote": 65,
+      "like": 1404,
+      "view": 2808
+    },
+    "k111": {
+      "reply": 105,
+      "repost": 436,
+      "quote": 117,
+      "like": 2328,
+      "view": 4656
+    },
+    "k112": {
+      "reply": 104,
+      "repost": 1085,
+      "quote": 443,
+      "like": 6743,
+      "view": 20229
+    },
+    "k113": {
+      "reply": 31,
+      "repost": 61,
+      "quote": 46,
+      "like": 771,
+      "view": 3855
+    },
+    "k114": {
+      "reply": 92,
+      "repost": 826,
+      "quote": 348,
+      "like": 5402,
+      "view": 10804
+    },
+    "k115": {
+      "reply": 3,
+      "repost": 14,
+      "quote": 3,
+      "like": 51,
+      "view": 102
+    }
+  },
+  "@avenger_rs1": {
+    "r001": {
+      "reply": 247,
+      "repost": 1873,
+      "quote": 679,
+      "like": 7924,
+      "view": 39620
+    },
+    "r002": {
+      "reply": 108,
+      "repost": 510,
+      "quote": 160,
+      "like": 5267,
+      "view": 21068
+    },
+    "r003": {
+      "reply": 14,
+      "repost": 53,
+      "quote": 18,
+      "like": 264,
+      "view": 1584
+    },
+    "r004": {
+      "reply": 129,
+      "repost": 278,
+      "quote": 130,
+      "like": 4935,
+      "view": 14805
+    },
+    "r005": {
+      "reply": 124,
+      "repost": 1683,
+      "quote": 370,
+      "like": 6438,
+      "view": 32190
+    },
+    "r006": {
+      "reply": 122,
+      "repost": 788,
+      "quote": 311,
+      "like": 5371,
+      "view": 21484
+    },
+    "r007": {
+      "reply": 35,
+      "repost": 211,
+      "quote": 135,
+      "like": 1391,
+      "view": 4173
+    },
+    "r008": {
+      "reply": 583,
+      "repost": 806,
+      "quote": 562,
+      "like": 7631,
+      "view": 30524
+    },
+    "r009": {
+      "reply": 25,
+      "repost": 482,
+      "quote": 169,
+      "like": 1711,
+      "view": 5133
+    },
+    "r010": {
+      "reply": 316,
+      "repost": 938,
+      "quote": 404,
+      "like": 7153,
+      "view": 42918
+    },
+    "r011": {
+      "reply": 79,
+      "repost": 125,
+      "quote": 163,
+      "like": 2071,
+      "view": 10355
+    },
+    "r012": {
+      "reply": 119,
+      "repost": 901,
+      "quote": 208,
+      "like": 3166,
+      "view": 12664
+    },
+    "r013": {
+      "reply": 243,
+      "repost": 1004,
+      "quote": 102,
+      "like": 4442,
+      "view": 26652
+    },
+    "r014": {
+      "reply": 39,
+      "repost": 254,
+      "quote": 85,
+      "like": 945,
+      "view": 4725
+    },
+    "r015": {
+      "reply": 98,
+      "repost": 610,
+      "quote": 47,
+      "like": 2062,
+      "view": 12372
+    },
+    "r016": {
+      "reply": 204,
+      "repost": 936,
+      "quote": 113,
+      "like": 3223,
+      "view": 19338
+    },
+    "r017": {
+      "reply": 262,
+      "repost": 888,
+      "quote": 156,
+      "like": 3650,
+      "view": 18250
+    },
+    "r018": {
+      "reply": 43,
+      "repost": 395,
+      "quote": 106,
+      "like": 1413,
+      "view": 7065
+    },
+    "r019": {
+      "reply": 316,
+      "repost": 1576,
+      "quote": 202,
+      "like": 7452,
+      "view": 22356
+    },
+    "r020": {
+      "reply": 93,
+      "repost": 815,
+      "quote": 380,
+      "like": 4151,
+      "view": 8302
+    },
+    "r021": {
+      "reply": 169,
+      "repost": 592,
+      "quote": 99,
+      "like": 4526,
+      "view": 13578
+    },
+    "r022": {
+      "reply": 274,
+      "repost": 1031,
+      "quote": 341,
+      "like": 3766,
+      "view": 22596
+    },
+    "r023": {
+      "reply": 25,
+      "repost": 167,
+      "quote": 60,
+      "like": 788,
+      "view": 3152
+    },
+    "r024": {
+      "reply": 22,
+      "repost": 315,
+      "quote": 98,
+      "like": 1393,
+      "view": 2786
+    },
+    "r025": {
+      "reply": 44,
+      "repost": 173,
+      "quote": 73,
+      "like": 748,
+      "view": 4488
+    },
+    "r026": {
+      "reply": 184,
+      "repost": 735,
+      "quote": 412,
+      "like": 5064,
+      "view": 15192
+    },
+    "r027": {
+      "reply": 373,
+      "repost": 1616,
+      "quote": 240,
+      "like": 7523,
+      "view": 30092
+    },
+    "r028": {
+      "reply": 161,
+      "repost": 1634,
+      "quote": 383,
+      "like": 7167,
+      "view": 21501
+    },
+    "r029": {
+      "reply": 78,
+      "repost": 246,
+      "quote": 237,
+      "like": 2585,
+      "view": 12925
+    },
+    "r030": {
+      "reply": 81,
+      "repost": 1910,
+      "quote": 166,
+      "like": 7917,
+      "view": 23751
+    },
+    "r031": {
+      "reply": 198,
+      "repost": 212,
+      "quote": 373,
+      "like": 4126,
+      "view": 20630
+    },
+    "r032": {
+      "reply": 102,
+      "repost": 337,
+      "quote": 105,
+      "like": 1998,
+      "view": 5994
+    },
+    "r033": {
+      "reply": 36,
+      "repost": 77,
+      "quote": 44,
+      "like": 700,
+      "view": 4200
+    },
+    "r034": {
+      "reply": 345,
+      "repost": 522,
+      "quote": 178,
+      "like": 5127,
+      "view": 30762
+    },
+    "r035": {
+      "reply": 6,
+      "repost": 131,
+      "quote": 36,
+      "like": 501,
+      "view": 2004
+    },
+    "r036": {
+      "reply": 213,
+      "repost": 1936,
+      "quote": 165,
+      "like": 6915,
+      "view": 41490
+    },
+    "r037": {
+      "reply": 73,
+      "repost": 419,
+      "quote": 252,
+      "like": 3465,
+      "view": 10395
+    },
+    "r038": {
+      "reply": 289,
+      "repost": 1101,
+      "quote": 562,
+      "like": 5783,
+      "view": 34698
+    },
+    "r039": {
+      "reply": 217,
+      "repost": 364,
+      "quote": 504,
+      "like": 6188,
+      "view": 37128
+    },
+    "r040": {
+      "reply": 196,
+      "repost": 687,
+      "quote": 217,
+      "like": 2694,
+      "view": 10776
+    },
+    "r041": {
+      "reply": 101,
+      "repost": 1166,
+      "quote": 207,
+      "like": 6958,
+      "view": 41748
+    },
+    "r042": {
+      "reply": 234,
+      "repost": 1087,
+      "quote": 260,
+      "like": 7090,
+      "view": 28360
+    },
+    "r043": {
+      "reply": 24,
+      "repost": 339,
+      "quote": 173,
+      "like": 1762,
+      "view": 10572
+    },
+    "r044": {
+      "reply": 192,
+      "repost": 973,
+      "quote": 415,
+      "like": 4383,
+      "view": 8766
+    },
+    "r045": {
+      "reply": 232,
+      "repost": 1529,
+      "quote": 238,
+      "like": 5840,
+      "view": 23360
+    },
+    "r046": {
+      "reply": 165,
+      "repost": 392,
+      "quote": 309,
+      "like": 4761,
+      "view": 28566
+    },
+    "r047": {
+      "reply": 191,
+      "repost": 409,
+      "quote": 296,
+      "like": 4307,
+      "view": 21535
+    },
+    "r048": {
+      "reply": 459,
+      "repost": 295,
+      "quote": 128,
+      "like": 5854,
+      "view": 23416
+    },
+    "r049": {
+      "reply": 318,
+      "repost": 526,
+      "quote": 358,
+      "like": 5173,
+      "view": 10346
+    },
+    "r050": {
+      "reply": 45,
+      "repost": 473,
+      "quote": 291,
+      "like": 3446,
+      "view": 17230
+    },
+    "r051": {
+      "reply": 98,
+      "repost": 398,
+      "quote": 72,
+      "like": 1789,
+      "view": 3578
+    },
+    "r052": {
+      "reply": 18,
+      "repost": 113,
+      "quote": 49,
+      "like": 605,
+      "view": 2420
+    },
+    "r053": {
+      "reply": 33,
+      "repost": 226,
+      "quote": 68,
+      "like": 982,
+      "view": 3928
+    },
+    "r054": {
+      "reply": 6,
+      "repost": 74,
+      "quote": 27,
+      "like": 288,
+      "view": 864
+    },
+    "r055": {
+      "reply": 261,
+      "repost": 840,
+      "quote": 232,
+      "like": 3974,
+      "view": 19870
+    },
+    "r056": {
+      "reply": 375,
+      "repost": 955,
+      "quote": 242,
+      "like": 5188,
+      "view": 25940
+    },
+    "r057": {
+      "reply": 485,
+      "repost": 414,
+      "quote": 399,
+      "like": 6472,
+      "view": 32360
+    },
+    "r058": {
+      "reply": 228,
+      "repost": 255,
+      "quote": 309,
+      "like": 4678,
+      "view": 18712
+    },
+    "r059": {
+      "reply": 40,
+      "repost": 241,
+      "quote": 241,
+      "like": 2767,
+      "view": 11068
+    },
+    "r060": {
+      "reply": 152,
+      "repost": 736,
+      "quote": 185,
+      "like": 2828,
+      "view": 14140
+    },
+    "r061": {
+      "reply": 167,
+      "repost": 862,
+      "quote": 259,
+      "like": 3241,
+      "view": 9723
+    },
+    "r062": {
+      "reply": 347,
+      "repost": 686,
+      "quote": 157,
+      "like": 5827,
+      "view": 23308
+    },
+    "r063": {
+      "reply": 260,
+      "repost": 1861,
+      "quote": 319,
+      "like": 7234,
+      "view": 21702
+    },
+    "r064": {
+      "reply": 96,
+      "repost": 624,
+      "quote": 100,
+      "like": 4351,
+      "view": 17404
+    },
+    "r065": {
+      "reply": 70,
+      "repost": 95,
+      "quote": 99,
+      "like": 1705,
+      "view": 3410
+    },
+    "r066": {
+      "reply": 96,
+      "repost": 1164,
+      "quote": 325,
+      "like": 4146,
+      "view": 12438
+    },
+    "r067": {
+      "reply": 278,
+      "repost": 372,
+      "quote": 389,
+      "like": 4339,
+      "view": 17356
+    },
+    "r068": {
+      "reply": 389,
+      "repost": 564,
+      "quote": 528,
+      "like": 6784,
+      "view": 40704
+    },
+    "r069": {
+      "reply": 228,
+      "repost": 688,
+      "quote": 77,
+      "like": 3813,
+      "view": 19065
+    },
+    "r070": {
+      "reply": 446,
+      "repost": 1526,
+      "quote": 207,
+      "like": 7687,
+      "view": 15374
+    },
+    "r071": {
+      "reply": 66,
+      "repost": 935,
+      "quote": 308,
+      "like": 3874,
+      "view": 7748
+    },
+    "r072": {
+      "reply": 14,
+      "repost": 49,
+      "quote": 8,
+      "like": 234,
+      "view": 1404
+    },
+    "r073": {
+      "reply": 50,
+      "repost": 309,
+      "quote": 138,
+      "like": 1692,
+      "view": 5076
+    },
+    "r074": {
+      "reply": 161,
+      "repost": 495,
+      "quote": 161,
+      "like": 5547,
+      "view": 11094
+    },
+    "r075": {
+      "reply": 388,
+      "repost": 597,
+      "quote": 500,
+      "like": 7900,
+      "view": 47400
+    },
+    "r076": {
+      "reply": 131,
+      "repost": 1300,
+      "quote": 383,
+      "like": 4550,
+      "view": 18200
+    },
+    "r077": {
+      "reply": 104,
+      "repost": 607,
+      "quote": 434,
+      "like": 4752,
+      "view": 14256
+    },
+    "r078": {
+      "reply": 60,
+      "repost": 256,
+      "quote": 413,
+      "like": 4478,
+      "view": 22390
+    },
+    "r079": {
+      "reply": 17,
+      "repost": 33,
+      "quote": 23,
+      "like": 463,
+      "view": 926
+    },
+    "r080": {
+      "reply": 421,
+      "repost": 1207,
+      "quote": 437,
+      "like": 5822,
+      "view": 34932
+    },
+    "r081": {
+      "reply": 129,
+      "repost": 492,
+      "quote": 132,
+      "like": 3702,
+      "view": 22212
+    },
+    "r082": {
+      "reply": 97,
+      "repost": 1757,
+      "quote": 508,
+      "like": 6262,
+      "view": 37572
+    },
+    "r083": {
+      "reply": 77,
+      "repost": 1178,
+      "quote": 356,
+      "like": 4701,
+      "view": 14103
+    },
+    "r084": {
+      "reply": 26,
+      "repost": 178,
+      "quote": 68,
+      "like": 846,
+      "view": 4230
+    },
+    "r085": {
+      "reply": 297,
+      "repost": 335,
+      "quote": 357,
+      "like": 3904,
+      "view": 11712
+    },
+    "r086": {
+      "reply": 80,
+      "repost": 486,
+      "quote": 158,
+      "like": 2163,
+      "view": 8652
+    },
+    "r087": {
+      "reply": 271,
+      "repost": 374,
+      "quote": 377,
+      "like": 6511,
+      "view": 26044
+    },
+    "r088": {
+      "reply": 123,
+      "repost": 271,
+      "quote": 238,
+      "like": 2929,
+      "view": 14645
+    },
+    "r089": {
+      "reply": 94,
+      "repost": 378,
+      "quote": 427,
+      "like": 5001,
+      "view": 30006
+    },
+    "r090": {
+      "reply": 215,
+      "repost": 1396,
+      "quote": 548,
+      "like": 6577,
+      "view": 13154
+    },
+    "r091": {
+      "reply": 167,
+      "repost": 676,
+      "quote": 307,
+      "like": 4414,
+      "view": 22070
+    },
+    "r092": {
+      "reply": 354,
+      "repost": 662,
+      "quote": 214,
+      "like": 4538,
+      "view": 13614
+    },
+    "r093": {
+      "reply": 269,
+      "repost": 1981,
+      "quote": 439,
+      "like": 6717,
+      "view": 40302
+    },
+    "r094": {
+      "reply": 167,
+      "repost": 266,
+      "quote": 209,
+      "like": 2853,
+      "view": 17118
+    },
+    "r095": {
+      "reply": 418,
+      "repost": 479,
+      "quote": 413,
+      "like": 6106,
+      "view": 36636
+    },
+    "r096": {
+      "reply": 45,
+      "repost": 437,
+      "quote": 121,
+      "like": 2715,
+      "view": 16290
+    },
+    "r097": {
+      "reply": 175,
+      "repost": 746,
+      "quote": 228,
+      "like": 3374,
+      "view": 6748
+    },
+    "r098": {
+      "reply": 222,
+      "repost": 1429,
+      "quote": 168,
+      "like": 6766,
+      "view": 33830
+    },
+    "r099": {
+      "reply": 132,
+      "repost": 505,
+      "quote": 129,
+      "like": 1832,
+      "view": 5496
+    },
+    "r100": {
+      "reply": 2,
+      "repost": 8,
+      "quote": 2,
+      "like": 51,
+      "view": 153
+    },
+    "r101": {
+      "reply": 210,
+      "repost": 516,
+      "quote": 459,
+      "like": 5092,
+      "view": 30552
+    },
+    "r102": {
+      "reply": 164,
+      "repost": 550,
+      "quote": 234,
+      "like": 2505,
+      "view": 15030
+    },
+    "r103": {
+      "reply": 465,
+      "repost": 2153,
+      "quote": 766,
+      "like": 7723,
+      "view": 38615
+    },
+    "r104": {
+      "reply": 254,
+      "repost": 856,
+      "quote": 423,
+      "like": 4823,
+      "view": 9646
+    },
+    "r105": {
+      "reply": 101,
+      "repost": 1935,
+      "quote": 685,
+      "like": 7033,
+      "view": 28132
+    },
+    "r106": {
+      "reply": 3,
+      "repost": 7,
+      "quote": 4,
+      "like": 56,
+      "view": 336
+    },
+    "r107": {
+      "reply": 189,
+      "repost": 1610,
+      "quote": 368,
+      "like": 7141,
+      "view": 14282
+    }
+  }
+}
