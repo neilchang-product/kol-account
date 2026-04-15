@@ -76,6 +76,17 @@
     .modal-actions { display:flex; gap:0.8rem; justify-content:flex-end; margin-top:1.6rem; }
     .btn-ghost { background:transparent; color:var(--text-remark); border:1px solid var(--border); }
     .btn-ghost:hover { background:#f5f5f5; }
+
+    /* Search result items */
+    .search-result { display:flex; align-items:center; gap:1.2rem; padding:1.2rem; border:1px solid var(--border); border-radius:0.8rem; margin-bottom:0.8rem; cursor:pointer; transition:border-color 0.15s, background 0.15s; }
+    .search-result:hover { border-color:var(--primary); background:rgba(89,161,126,0.04); }
+    .search-result .sr-avatar { width:4rem; height:4rem; border-radius:50%; object-fit:cover; background:#eee; flex-shrink:0; }
+    .search-result .sr-info { flex:1; min-width:0; }
+    .search-result .sr-name { font-size:1.3rem; font-weight:600; }
+    .search-result .sr-id { font-size:1.15rem; color:var(--text-remark); }
+    .search-result .sr-desc { font-size:1.1rem; color:var(--text-content); margin-top:0.3rem; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+    .search-result .sr-stats { font-size:1.05rem; color:var(--text-hint); margin-top:0.2rem; }
+    .search-result .sr-action { flex-shrink:0; }
   </style>
 </head>
 <body>
@@ -96,6 +107,11 @@
       <span class="material-icons-outlined" style="font-size:1.6rem">add</span>
       新增帳號
     </button>
+  </div>
+
+  <div style="background:rgba(89,161,126,0.06);border-radius:0.8rem;padding:1rem 1.4rem;margin-bottom:1.6rem;font-size:1.2rem;color:var(--text-content);line-height:1.7;display:flex;align-items:flex-start;gap:0.6rem;">
+    <span class="material-icons-outlined" style="font-size:1.6rem;color:var(--primary);flex-shrink:0;margin-top:0.1rem;">info</span>
+    <span>請搜尋你所需要追蹤探勘的資料，我們將為你查詢相關帳號讓你選取、確認。預設將會啟動該帳號近一個月的資料探勘，按照工作排程需要 1-3 日不等。</span>
   </div>
 
   <div class="table-wrap">
@@ -120,33 +136,46 @@
 <!-- Add Modal -->
 <div class="modal-overlay" id="addModal">
   <div class="modal">
-    <h2><span class="material-icons-outlined">person_add</span> 新增分析帳號</h2>
-    <div class="form-group">
-      <label>帳號 URL（貼上頻道網址即可自動辨識）</label>
-      <input type="text" id="addUrl" placeholder="https://x.com/famitsu" oninput="parseUrl()">
+    <!-- Step 1: 搜尋 -->
+    <div id="addStep1">
+      <h2><span class="material-icons-outlined">person_add</span> 新增分析帳號</h2>
+      <div style="background:rgba(89,161,126,0.06);border-radius:0.6rem;padding:1rem 1.2rem;margin-bottom:1.4rem;font-size:1.2rem;color:var(--text-content);line-height:1.7;">
+        <span class="material-icons-outlined" style="font-size:1.4rem;vertical-align:middle;color:var(--primary);margin-right:0.3rem;">info</span>
+        請搜尋你所需要追蹤探勘的資料，我們將為你查詢相關帳號讓你選取、確認。預設將會啟動該帳號近一個月的資料探勘，按照工作排程需要 1-3 日不等。
+      </div>
+      <div class="form-group">
+        <label>帳號 URL（貼上頻道網址即可自動辨識）</label>
+        <input type="text" id="addUrl" placeholder="https://x.com/famitsu" oninput="parseUrl()" value="https://x.com/beauty">
+      </div>
+      <div class="form-group">
+        <label>平台</label>
+        <select id="addPlatform">
+          <option value="X">X (Twitter)</option>
+          <option value="Instagram">Instagram</option>
+          <option value="YouTube">YouTube</option>
+          <option value="Threads">Threads</option>
+          <option value="TikTok">TikTok</option>
+          <option value="Facebook">Facebook</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>帳號 ID 或名稱</label>
+        <input type="text" id="addId" placeholder="@username 或顯示名稱" value="beauty">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeAddModal()">取消</button>
+        <button class="btn btn-primary" onclick="searchAccount()"><span class="material-icons-outlined" style="font-size:1.4rem">search</span> 搜尋帳號</button>
+      </div>
     </div>
-    <div class="form-group">
-      <label>平台</label>
-      <select id="addPlatform">
-        <option value="X">X (Twitter)</option>
-        <option value="Instagram">Instagram</option>
-        <option value="YouTube">YouTube</option>
-        <option value="Threads">Threads</option>
-        <option value="TikTok">TikTok</option>
-        <option value="Facebook">Facebook</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>帳號 ID（如 @famitsu）</label>
-      <input type="text" id="addId" placeholder="@username 或貼上頻道 URL">
-    </div>
-    <div class="form-group">
-      <label>帳號名稱（選填）</label>
-      <input type="text" id="addName" placeholder="顯示名稱">
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeAddModal()">取消</button>
-      <button class="btn btn-primary" onclick="addAccount()">送出分析請求</button>
+    <!-- Step 2: 確認帳號 -->
+    <div id="addStep2" style="display:none;">
+      <h2><span class="material-icons-outlined">how_to_reg</span> 確認帳號</h2>
+      <div style="font-size:1.2rem;color:var(--text-remark);margin-bottom:1rem;">找到以下帳號，請選擇要分析的帳號：</div>
+      <div id="searchResults" style="max-height:36rem;overflow-y:auto;"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="backToStep1()">返回搜尋</button>
+        <button class="btn btn-ghost" onclick="closeAddModal()">取消</button>
+      </div>
     </div>
   </div>
 </div>
@@ -220,8 +249,6 @@ function filterAccounts() {
   renderTable(filtered);
 }
 
-function openAddModal() { document.getElementById('addModal').classList.add('show'); }
-function closeAddModal() { document.getElementById('addModal').classList.remove('show'); }
 
 // 從 URL 自動辨識平台和 ID
 function parseUrl() {
@@ -250,18 +277,93 @@ function parseUrl() {
   }
 }
 
-function addAccount() {
+// 模擬搜尋結果
+const MOCK_SEARCH_DB = [
+  { name:'Beauty Insider JP', id:'@beauty_insider_jp', platform:'X', img:'', followers:'156K', following:'432', posts:'18.5K', created:'Apr 2017', desc:'日本美妝トレンド速報｜新作コスメレビュー｜デパコス・プチプラ比較｜毎日更新', url:'https://x.com/beauty_insider_jp' },
+  { name:'BeautyTech Lab', id:'@beautytech_lab', platform:'X', img:'', followers:'89.2K', following:'287', posts:'9.3K', created:'Aug 2019', desc:'美容テクノロジー×スキンケア科学｜成分解析｜エビデンスベースの美容情報を発信', url:'https://x.com/beautytech_lab' },
+  { name:'beauty_korea_daily', id:'@beauty_kr_daily', platform:'X', img:'', followers:'234K', following:'521', posts:'24.1K', created:'Jan 2018', desc:'韓国コスメ最新情報｜K-Beauty トレンド｜Olive Young ランキング速報｜日韓比較レビュー', url:'https://x.com/beauty_kr_daily' },
+  { name:'テックレビュー太郎', id:'@techreview_taro', platform:'X', img:'', followers:'28.1K', following:'156', posts:'5.6K', created:'Feb 2019', desc:'最新テクノロジーニュースと製品レビュー', url:'https://x.com/techreview_taro' },
+  { name:'王小明', id:'@xiaoming_wang', platform:'X', img:'', followers:'12.3K', following:'342', posts:'1.2K', created:'Jan 2020', desc:'美食探索家｜台北台中高雄吃透透', url:'https://x.com/xiaoming_wang' },
+  { name:'Ming Reviews', id:'@ming_reviews', platform:'YouTube', img:'', followers:'45.6K', following:'12', posts:'380', created:'Nov 2019', desc:'3C產品開箱評測｜每週更新', url:'https://youtube.com/@ming_reviews' },
+];
+
+function searchAccount() {
   const url = document.getElementById('addUrl').value.trim();
   const id = document.getElementById('addId').value.trim();
-  const name = document.getElementById('addName').value.trim() || id;
   const platform = document.getElementById('addPlatform').value;
-  if (!id) return alert('請填寫帳號 ID 或貼上 URL');
-  accounts.unshift({ name, id, platform, img:'', url: url || '', followers:'--', following:'--', posts:'--', created:'--', desc:'', last_analyzed:'analyzing:0' });
+  if (!id && !url) return alert('請填寫帳號 ID、名稱或貼上 URL');
+
+  const query = (id || url).toLowerCase();
+
+  // 模擬：如果有完整 URL，直接匹配一筆；否則模糊搜尋多筆
+  let results;
+  if (url && url.startsWith('http')) {
+    // URL 精確匹配 → 只回一筆
+    const exact = MOCK_SEARCH_DB.find(r => r.url.toLowerCase().includes(query));
+    results = exact ? [exact] : [{ name: id || 'Unknown', id: id || '@unknown', platform, img:'', followers:'--', following:'--', posts:'--', created:'--', desc:'透過 URL 找到的帳號', url }];
+  } else {
+    // 名稱/ID 模糊搜尋 → 多筆
+    results = MOCK_SEARCH_DB.filter(r =>
+      r.name.toLowerCase().includes(query) ||
+      r.id.toLowerCase().includes(query) ||
+      r.desc.toLowerCase().includes(query)
+    );
+    if (results.length === 0) {
+      const fallbackName = id || query || 'Unknown';
+      const fallbackId = id ? (id.startsWith('@') ? id : '@' + id) : '@unknown';
+      results = [{ name: fallbackName, id: fallbackId, platform, img:'', followers:'--', following:'--', posts:'--', created:'--', desc:'未找到完全匹配，將以此 ID 新增', url: '' }];
+    }
+  }
+
+  // 顯示 Step 2
+  const container = document.getElementById('searchResults');
+  container.innerHTML = results.map((r, i) => {
+    const avatarHtml = r.img
+      ? `<img class="sr-avatar" src="${r.img}">`
+      : `<div class="sr-avatar" style="display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:700;font-size:1.4rem;background:#DCE5E2;">${(r.name || '?')[0]}</div>`;
+    return `<div class="search-result" onclick="confirmAdd(${i})">
+      ${avatarHtml}
+      <div class="sr-info">
+        <div class="sr-name">${r.name}</div>
+        <div class="sr-id">${r.id} · <span class="badge-platform" style="font-size:0.95rem;padding:0.1rem 0.6rem;">${r.platform}</span></div>
+        <div class="sr-desc">${r.desc}</div>
+        <div class="sr-stats">${r.followers} followers · ${r.posts} posts · ${r.created}</div>
+      </div>
+      <div class="sr-action"><span class="material-icons-outlined" style="font-size:2rem;color:var(--primary);">add_circle_outline</span></div>
+    </div>`;
+  }).join('');
+
+  // 暫存搜尋結果
+  window._searchResults = results;
+
+  document.getElementById('addStep1').style.display = 'none';
+  document.getElementById('addStep2').style.display = 'block';
+}
+
+function confirmAdd(idx) {
+  const r = window._searchResults[idx];
+  accounts.unshift({
+    name: r.name, id: r.id, platform: r.platform, img: r.img || '',
+    url: r.url || '', followers: r.followers, following: r.following,
+    posts: r.posts, created: r.created, desc: r.desc,
+    last_analyzed: 'analyzing:0'
+  });
   renderTable(accounts);
   closeAddModal();
-  document.getElementById('addUrl').value = '';
-  document.getElementById('addId').value = '';
-  document.getElementById('addName').value = '';
+}
+
+function backToStep1() {
+  document.getElementById('addStep1').style.display = 'block';
+  document.getElementById('addStep2').style.display = 'none';
+}
+
+function openAddModal() {
+  document.getElementById('addModal').classList.add('show');
+  document.getElementById('addStep1').style.display = 'block';
+  document.getElementById('addStep2').style.display = 'none';
+}
+function closeAddModal() {
+  document.getElementById('addModal').classList.remove('show');
 }
 
 loadData();
