@@ -81,7 +81,7 @@
     .chart-area .material-icons-outlined { font-size:4rem; margin-bottom:0.8rem; }
 
     /* Posts list */
-    .posts-section { background:var(--paper); border-radius:1.2rem; box-shadow:var(--shadow); overflow:hidden; }
+    .posts-section { background:var(--paper); border-radius:1.2rem; box-shadow:var(--shadow); position:relative; }
     .posts-header { padding:1.6rem 2rem; border-bottom:1px solid var(--border); font-size:1.4rem; font-weight:700; display:flex; align-items:center; gap:0.6rem; }
     .posts-header .material-icons-outlined { color:var(--primary); }
     .post-item { padding:1.4rem 2rem; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.12s; }
@@ -93,6 +93,10 @@
     .post-meta .material-icons-outlined { font-size:1.4rem; }
     .post-hashtags { margin-top:0.6rem; display:flex; gap:0.4rem; flex-wrap:wrap; }
     .post-hashtags span { font-size:1.05rem; color:var(--primary); background:rgba(89,161,126,0.08); padding:0.2rem 0.6rem; border-radius:0.4rem; }
+    /* Info tooltip */
+    .info-tip-content { display:none; position:absolute; bottom:calc(100% + 8px); right:0; background:rgba(0,0,0,0.85); color:#fff; padding:1rem 1.2rem; border-radius:0.6rem; font-size:1.15rem; line-height:1.7; width:40rem; pointer-events:none; z-index:50; font-weight:400; }
+    .info-tip:hover .info-tip-content { display:block; }
+
     .open-link { display:inline-flex; align-items:center; justify-content:center; width:2.8rem; height:2.8rem; border-radius:50%; background:transparent; border:none; cursor:pointer; color:var(--text-remark); transition:background 0.15s, color 0.15s; flex-shrink:0; }
     .open-link:hover { background:rgba(89,161,126,0.1); color:var(--primary); }
     .open-link .material-icons-outlined { font-size:1.8rem; }
@@ -128,7 +132,10 @@
         <span style="font-size:1.15rem;color:var(--text-remark);font-weight:500;margin-right:0.4rem;line-height:1">環比</span>
         <button class="time-tab active" onclick="setTimeUnit('day', this)">日</button>
         <button class="time-tab" onclick="setTimeUnit('week', this)">週</button>
-        <!-- <button class="time-tab" onclick="setTimeUnit('month', this)">月</button> -->
+        <span class="info-tip" style="position:relative;display:inline-flex;align-items:center;margin-left:0.6rem;">
+          <span style="width:1.8rem;height:1.8rem;border-radius:50%;border:1.5px solid #2196F3;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:600;color:#2196F3;cursor:help;">?</span>
+          <span class="info-tip-content">環比增長率：各指標卡片下方的增長百分比。<br>・<b>日</b>：與昨天比（最後一天 vs 前一天，需 >= 2 日資料）<br>・<b>週</b>：與上週比（最後 7 天加總 vs 倒數 8~14 天加總，需 >= 14 日資料）<br>資料不足時顯示 — 代表暫無環比數據可觀測。</span>
+        </span>
       </div>
     </div>
   </div>
@@ -149,12 +156,18 @@
   <div class="heatmap-section" id="heatmapSection" style="background:var(--paper);border-radius:1rem;box-shadow:var(--shadow);padding:1.6rem 2rem;margin-bottom:1.6rem;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
       <div style="font-size:1.3rem;font-weight:600;color:var(--text-title);">指標熱力圖</div>
-      <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:1rem;color:var(--text-remark);user-select:none;">
-        顯示數值
-        <span class="hm-switch" onclick="toggleHeatmapValues()" id="hmSwitch" style="display:inline-block;width:3.2rem;height:1.8rem;border-radius:1rem;background:#ccc;position:relative;transition:background 0.2s;vertical-align:middle;">
-          <span style="position:absolute;top:2px;left:2px;width:1.4rem;height:1.4rem;border-radius:50%;background:#fff;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;font-size:1rem;color:var(--text-remark);user-select:none;">
+          顯示數值
+          <span class="hm-switch" onclick="toggleHeatmapValues()" id="hmSwitch" style="display:inline-block;width:3.2rem;height:1.8rem;border-radius:1rem;background:#ccc;position:relative;transition:background 0.2s;vertical-align:middle;">
+            <span style="position:absolute;top:2px;left:2px;width:1.4rem;height:1.4rem;border-radius:50%;background:#fff;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
+          </span>
+        </label>
+        <span class="info-tip" style="position:relative;display:inline-flex;align-items:center;">
+          <span style="width:1.8rem;height:1.8rem;border-radius:50%;border:1.5px solid #2196F3;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:600;color:#2196F3;cursor:help;">?</span>
+          <span class="info-tip-content">指標熱力圖：以顏色深淺呈現各指標在每日的數值分佈。<br>・<b>橫軸</b>：日期（1~31 日）<br>・<b>縱軸</b>：各項互動指標<br>・<b>顏色深淺</b>：數值越高顏色越深<br>・<b>顯示數值</b>：開啟後在格子內顯示縮寫數值（K/M）(推薦使用！)<br>・<b>Hover</b>：移入格子可查看完整數值<br>・<b>點擊格子</b>：另開新分頁進入該日的擴散觀察</span>
         </span>
-      </label>
+      </div>
     </div>
     <div id="heatmapGrid"></div>
   </div>
@@ -188,6 +201,10 @@
             <option value="50" selected>50 篇/頁</option>
             <option value="100">100 篇/頁</option>
           </select>
+          <span class="info-tip" style="position:relative;display:inline-flex;align-items:center;">
+            <span style="width:1.8rem;height:1.8rem;border-radius:50%;border:1.5px solid #2196F3;display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:600;color:#2196F3;cursor:help;">?</span>
+            <span class="info-tip-content" style="bottom:auto;top:calc(100% + 8px);">貼文列表操作說明：<br>・<b>時間篩選</b>：點擊區間按鈕，篩選特定週的貼文，括號內顯示該區間篇數<br>・<b>排序</b>：選擇指標後，貼文依該指標排序，對應數值以顏色突顯<br>・<b>排序方向</b>：點擊箭頭切換升序/降序<br>・<b>每頁篇數</b>：可選 20 / 50 / 100 篇<br>・<b>點擊貼文</b>：另開新分頁進入當日擴散觀察</span>
+          </span>
         </div>
       </div>
     </div>
