@@ -147,6 +147,7 @@
   ![環比 info tooltip](./2026-04-17-1.png)
   ![熱力圖 info tooltip](./2026-04-17-2.png)
   ![貼文列表 info tooltip](./2026-04-17-3.png)
+- **kol-spread 趨勢圖 hover tooltip** — 擴散觀察頁的趨勢圖新增與帳號分析頁一致的 hover 效果（tooltip 顯示該小時各指標數值 + 垂直虛線）
 
 ### 2026-04-16 22:00
 
